@@ -1,0 +1,290 @@
+.errorMessageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    gap: var(--gap-large);
+    padding: var(--gap-xlarge);
+    text-align: center;
+    background: var(--background-color-light);
+    box-sizing: border-box;
+}
+
+.errorCard {
+    background: var(--letter-color-white);
+    border-radius: var(--gap-medium);
+    padding: var(--gap-xlarge);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ff3b30;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.errorCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff3b30, #ff6b6b);
+}
+
+.errorIcon {
+    font-size: calc(var(--font-size-title) * 2);
+    color: #ff3b30;
+    margin-bottom: var(--gap-large);
+    animation: shake 0.5s ease-in-out;
+}
+
+.errorTitle {
+    color: #ff3b30;
+    font-size: var(--font-size-subtitle);
+    font-family: var(--letter-font-family-1);
+    font-weight: 700;
+    margin: 0 0 var(--gap-medium) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.errorText {
+    color: var(--blue-gamma-dark);
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-2);
+    margin: 0;
+    max-width: 100%;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.errorActions {
+    margin-top: var(--gap-large);
+    display: flex;
+    gap: var(--gap-medium);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.retryButton,
+.backHomeButton {
+    padding: var(--gap-small) var(--gap-large);
+    border: none;
+    border-radius: var(--gap-medium);
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-1);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-small);
+    text-decoration: none;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.retryButton {
+    background: var(--blue-gamma-light);
+    color: var(--letter-color-white);
+}
+
+.retryButton:hover {
+    background: var(--blue-gamma-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.backHomeButton {
+    background: var(--letter-color-gray);
+    color: var(--letter-color-white);
+}
+
+.backHomeButton:hover {
+    background: #545b62;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.retryButton:active,
+.backHomeButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+/* Quick error message (inline) */
+.errorMessageInline {
+    background: rgba(255, 59, 48, 0.1);
+    border: 1px solid #ff3b30;
+    border-radius: var(--gap-small);
+    padding: var(--gap-small) var(--gap-medium);
+    color: #ff3b30;
+    font-size: var(--font-size-small);
+    font-family: var(--letter-font-family-2);
+    margin: var(--gap-small) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-small);
+}
+
+.errorMessageInline i {
+    font-size: calc(var(--font-size-small) + 0.1em);
+    flex-shrink: 0;
+}
+
+/* Network specific error */
+.networkError {
+    border-color: #ff9500;
+}
+
+.networkError::before {
+    background: linear-gradient(90deg, #ff9500, #ffb84d);
+}
+
+.networkError .errorIcon,
+.networkError .errorTitle {
+    color: #ff9500;
+}
+
+/* Validation specific error */
+.validationError {
+    border-color: #ff6b6b;
+}
+
+.validationError::before {
+    background: linear-gradient(90deg, #ff6b6b, #ffa8a8);
+}
+
+.validationError .errorIcon,
+.validationError .errorTitle {
+    color: #ff6b6b;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) {
+    .errorMessageContainer {
+        padding: var(--gap-large) var(--gap-medium);
+    }
+    
+    .errorCard {
+        padding: var(--gap-large);
+        max-width: 450px;
+    }
+    
+    .errorIcon {
+        font-size: var(--font-size-title);
+        margin-bottom: var(--gap-medium);
+    }
+    
+    .errorTitle {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .errorText {
+        font-size: var(--font-size-body);
+    }
+    
+    .retryButton,
+    .backHomeButton {
+        padding: var(--gap-small) var(--gap-medium);
+        font-size: var(--font-size-body);
+        min-width: 100px;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .errorMessageContainer {
+        padding: var(--gap-medium) var(--gap-small);
+        gap: var(--gap-medium);
+    }
+    
+    .errorCard {
+        padding: var(--gap-medium);
+        max-width: 100%;
+    }
+    
+    .errorIcon {
+        font-size: var(--font-size-subtitle);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .errorTitle {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .errorText {
+        font-size: var(--font-size-small);
+        line-height: 1.5;
+    }
+    
+    .errorActions {
+        margin-top: var(--gap-medium);
+        flex-direction: column;
+        gap: var(--gap-small);
+    }
+    
+    .retryButton,
+    .backHomeButton {
+        width: 100%;
+        padding: var(--gap-small);
+        font-size: var(--font-size-small);
+        min-width: auto;
+    }
+    
+    .errorMessageInline {
+        padding: var(--gap-tiny) var(--gap-small);
+        font-size: var(--font-size-small);
+    }
+}
+
+@media (max-width: 479px) {
+    .errorMessageContainer {
+        padding: var(--gap-small);
+    }
+    
+    .errorCard {
+        padding: var(--gap-small);
+    }
+    
+    .errorIcon {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .errorTitle {
+        font-size: var(--font-size-small);
+        margin-bottom: var(--gap-tiny);
+    }
+    
+    .errorText {
+        font-size: var(--font-size-small);
+    }
+    
+    .errorActions {
+        margin-top: var(--gap-small);
+        gap: var(--gap-tiny);
+    }
+    
+    .retryButton,
+    .backHomeButton {
+        padding: var(--gap-tiny) var(--gap-small);
+        font-size: var(--font-size-small);
+    }
+    
+    .errorMessageInline {
+        padding: var(--gap-tiny);
+        font-size: var(--font-size-tiny);
+        gap: var(--gap-tiny);
+    }
+}

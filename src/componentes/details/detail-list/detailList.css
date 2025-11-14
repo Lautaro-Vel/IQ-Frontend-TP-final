@@ -1,0 +1,308 @@
+.divListDetails {
+    background: var(--background-color-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: var(--gap-large);
+    gap: var(--gap-large);
+    font-family: var(--letter-font-family-2);
+    position: relative;
+}
+
+.userProfileSection {
+    background: var(--letter-color-white);
+    padding: var(--gap-xlarge);
+    border-radius: var(--gap-medium);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--blue-gamma-intermediate);
+    max-width: var(--container-medium);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.userProfileSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-gamma-light), var(--blue-gamma-intense));
+}
+
+.userProfileSection h2 {
+    color: var(--blue-gamma-dark);
+    font-family: var(--letter-font-family-1);
+    font-size: var(--font-size-subtitle);
+    font-weight: 600;
+    margin-bottom: var(--gap-medium);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--blue-gamma-intermediate);
+    padding-bottom: var(--gap-small);
+}
+
+.userProfileSection p {
+    margin: var(--gap-small) 0;
+    color: var(--letter-color-gray);
+    font-size: var(--font-size-body);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.userQuotesSection {
+    max-width: var(--container-large);
+    width: 100%;
+    background: var(--letter-color-white);
+    border-radius: var(--gap-medium);
+    padding: var(--gap-large);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--blue-gamma-intermediate);
+}
+
+.userQuotesSection h3 {
+    color: var(--blue-gamma-dark);
+    font-family: var(--letter-font-family-1);
+    font-size: var(--font-size-subtitle);
+    font-weight: 600;
+    margin-bottom: var(--gap-medium);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--blue-gamma-intermediate);
+    padding-bottom: var(--gap-small);
+}
+
+.divButtonReturnCitas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: var(--gap-xlarge);
+    left: var(--gap-xlarge);
+    width: 70px;
+    height: 70px;
+    z-index: 100;
+}
+
+.linkReturnCitas {
+    text-decoration: none;
+    color: var(--letter-color-white);
+    width: 100%;
+    height: 100%;
+    font-size: var(--font-size-title);
+    background: var(--blue-gamma-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.linkReturnCitas:hover {
+    background: var(--blue-gamma-dark);
+    color: var(--letter-color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.divSpansContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-medium);
+    padding: var(--gap-xlarge) var(--gap-large);
+    background: var(--letter-color-white);
+    border-radius: var(--gap-medium);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--blue-gamma-intermediate);
+    text-align: center;
+}
+
+.upsSpan {
+    color: var(--blue-gamma-dark);
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 700;
+    font-family: var(--letter-font-family-1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+.puntoTransparent {
+    color: transparent;
+}
+
+.InvalidUserSpan {
+    color: var(--blue-gamma-light);
+    font-size: var(--font-size-subtitle);
+    font-weight: 600;
+    font-family: var(--letter-font-family-2);
+    margin: 0;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) {
+    .divListDetails {
+        padding: var(--gap-medium);
+        gap: var(--gap-medium);
+    }
+    
+    .divButtonReturnCitas {
+        top: var(--gap-large);
+        left: var(--gap-large);
+        width: 60px;
+        height: 60px;
+    }
+    
+    .linkReturnCitas {
+        font-size: var(--font-size-subtitle);
+    }
+    
+    .userProfileSection {
+        padding: var(--gap-large);
+    }
+    
+    .userProfileSection h2 {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .userProfileSection p {
+        font-size: var(--font-size-body);
+        margin: var(--gap-small) 0;
+    }
+    
+    .userQuotesSection {
+        padding: var(--gap-large) var(--gap-medium);
+    }
+    
+    .userQuotesSection h3 {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .upsSpan {
+        font-size: clamp(3rem, 10vw, 6rem);
+    }
+    
+    .InvalidUserSpan {
+        font-size: var(--font-size-body);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .divListDetails {
+        padding: var(--gap-medium) var(--gap-small);
+        gap: var(--gap-medium);
+    }
+    
+    .divButtonReturnCitas {
+        top: var(--gap-medium);
+        left: var(--gap-medium);
+        width: 50px;
+        height: 50px;
+    }
+    
+    .linkReturnCitas {
+        font-size: var(--font-size-body);
+    }
+    
+    .userProfileSection {
+        padding: var(--gap-medium);
+    }
+    
+    .userProfileSection h2 {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .userProfileSection p {
+        font-size: var(--font-size-small);
+        margin: var(--gap-tiny) 0;
+    }
+    
+    .userQuotesSection {
+        padding: var(--gap-medium) var(--gap-small);
+    }
+    
+    .userQuotesSection h3 {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .divSpansContainer {
+        padding: var(--gap-large) var(--gap-medium);
+        gap: var(--gap-small);
+    }
+    
+    .upsSpan {
+        font-size: clamp(2.5rem, 15vw, 5rem);
+    }
+    
+    .InvalidUserSpan {
+        font-size: var(--font-size-body);
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 479px) {
+    .divListDetails {
+        padding: var(--gap-small);
+        gap: var(--gap-small);
+    }
+    
+    .divButtonReturnCitas {
+        top: var(--gap-small);
+        left: var(--gap-small);
+        width: 45px;
+        height: 45px;
+    }
+    
+    .linkReturnCitas {
+        font-size: var(--font-size-body);
+    }
+    
+    .userProfileSection {
+        padding: var(--gap-small);
+    }
+    
+    .userProfileSection h2 {
+        font-size: var(--font-size-body);
+    }
+    
+    .userProfileSection p {
+        font-size: var(--font-size-small);
+    }
+    
+    .userQuotesSection {
+        padding: var(--gap-small);
+    }
+    
+    .userQuotesSection h3 {
+        font-size: var(--font-size-body);
+    }
+    
+    .divSpansContainer {
+        padding: var(--gap-medium) var(--gap-small);
+    }
+    
+    .upsSpan {
+        font-size: clamp(2rem, 20vw, 4rem);
+    }
+    
+    .InvalidUserSpan {
+        font-size: var(--font-size-small);
+        line-height: 1.4;
+    }
+}

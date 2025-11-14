@@ -1,0 +1,340 @@
+
+
+.divButtonReturnCitas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: var(--gap-xlarge);
+    left: var(--gap-xlarge);
+    width: 70px;
+    height: 70px;
+    z-index: 10;
+}
+
+.linkReturnCitas {
+    text-decoration: none;
+    color: var(--letter-color-white);
+    width: 100%;
+    height: 100%;
+    font-size: calc(var(--font-size-title) + 0.5em);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.linkReturnCitas:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--letter-color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.divContainerDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: var(--container-large);
+    width: 100%;
+    padding: var(--gap-xlarge);
+    font-family: var(--letter-font-family-2);
+    background: linear-gradient(135deg, var(--blue-gamma-dark), var(--blue-gamma-intense));
+    border-radius: var(--gap-large);
+    margin: 0 auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+    position: relative;
+    color: var(--letter-color-white);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.userNameDetails {
+    color: var(--letter-color-white);
+    font-size: var(--font-size-title);
+    font-family: var(--letter-font-family-1);
+    font-weight: 700;
+    padding-bottom: var(--gap-xlarge);
+    margin-top: var(--gap-xlarge);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.moreDetails {
+    color: var(--letter-color-white);
+    font-size: var(--font-size-subtitle);
+    font-family: var(--letter-font-family-1);
+    font-weight: 600;
+    padding-bottom: var(--gap-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: var(--gap-large);
+    width: 100%;
+}
+
+.descriptionDetail {
+    text-align: justify;
+    padding: 0 var(--gap-large);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--gap-medium);
+    padding: var(--gap-large);
+    line-height: 1.8;
+    font-size: var(--font-size-body);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Nuevos estilos para el perfil de usuario */
+.userProfileSection {
+    margin-bottom: var(--gap-large);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--gap-large);
+    border-radius: var(--gap-medium);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.userName {
+    color: var(--letter-color-white);
+    font-size: var(--font-size-title);
+    font-family: var(--letter-font-family-1);
+    font-weight: 700;
+    margin-bottom: var(--gap-medium);
+    text-transform: capitalize;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.userInfo p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-2);
+    margin-bottom: var(--gap-small);
+    line-height: 1.6;
+}
+
+.userStats {
+    margin-top: var(--gap-medium);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--gap-medium);
+}
+
+.statInfo {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-2);
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--gap-medium);
+    border-radius: var(--gap-small);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.label {
+    font-weight: 600;
+    color: var(--letter-color-white);
+    font-family: var(--letter-font-family-1);
+    display: block;
+    margin-bottom: var(--gap-tiny);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: var(--font-size-small);
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) {
+    .divContainerDetails {
+        max-width: 90%;
+        padding: var(--gap-large);
+    }
+    
+    .divButtonReturnCitas {
+        top: var(--gap-large);
+        left: var(--gap-large);
+        width: 60px;
+        height: 60px;
+    }
+    
+    .linkReturnCitas {
+        font-size: var(--font-size-title);
+    }
+    
+    .userNameDetails {
+        font-size: var(--font-size-subtitle);
+        margin-top: var(--gap-large);
+        padding-bottom: var(--gap-large);
+    }
+    
+    .moreDetails {
+        font-size: var(--font-size-body);
+        padding-bottom: var(--gap-small);
+        margin-bottom: var(--gap-medium);
+    }
+    
+    .descriptionDetail {
+        padding: var(--gap-medium);
+        font-size: var(--font-size-body);
+    }
+    
+    .userName {
+        font-size: var(--font-size-subtitle);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .userInfo p {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .userStats {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--gap-small);
+        margin-top: var(--gap-small);
+    }
+    
+    .statInfo {
+        font-size: var(--font-size-small);
+        padding: var(--gap-small);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .divContainerDetails {
+        padding: var(--gap-medium);
+        border-radius: var(--gap-medium);
+        margin: var(--gap-small);
+        max-width: calc(100% - var(--gap-medium));
+    }
+    
+    .divButtonReturnCitas {
+        top: var(--gap-medium);
+        left: var(--gap-medium);
+        width: 50px;
+        height: 50px;
+    }
+    
+    .linkReturnCitas {
+        font-size: var(--font-size-subtitle);
+    }
+    
+    .userNameDetails {
+        font-size: var(--font-size-subtitle);
+        padding-bottom: var(--gap-medium);
+        margin-top: var(--gap-medium);
+    }
+    
+    .moreDetails {
+        font-size: var(--font-size-body);
+        padding-bottom: var(--gap-small);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .descriptionDetail {
+        padding: var(--gap-small);
+        font-size: var(--font-size-small);
+        line-height: 1.6;
+    }
+    
+    .userProfileSection {
+        margin-bottom: var(--gap-medium);
+        padding: var(--gap-medium);
+    }
+    
+    .userName {
+        font-size: var(--font-size-body);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .userInfo p {
+        font-size: var(--font-size-small);
+        margin-bottom: var(--gap-tiny);
+    }
+    
+    .userStats {
+        grid-template-columns: 1fr;
+        gap: var(--gap-tiny);
+        margin-top: var(--gap-small);
+    }
+    
+    .statInfo {
+        font-size: var(--font-size-small);
+        padding: var(--gap-small);
+    }
+    
+    .label {
+        font-size: var(--font-size-tiny);
+        margin-bottom: calc(var(--gap-tiny) / 2);
+    }
+}
+
+@media (max-width: 479px) {
+    .divContainerDetails {
+        padding: var(--gap-small);
+        margin: var(--gap-tiny);
+        max-width: calc(100% - var(--gap-small));
+    }
+    
+    .divButtonReturnCitas {
+        top: var(--gap-small);
+        left: var(--gap-small);
+        width: 45px;
+        height: 45px;
+    }
+    
+    .linkReturnCitas {
+        font-size: var(--font-size-body);
+    }
+    
+    .userNameDetails {
+        font-size: var(--font-size-body);
+        padding-bottom: var(--gap-small);
+        margin-top: var(--gap-small);
+    }
+    
+    .moreDetails {
+        font-size: var(--font-size-small);
+        padding-bottom: var(--gap-tiny);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .descriptionDetail {
+        padding: var(--gap-tiny) var(--gap-small);
+        font-size: var(--font-size-small);
+    }
+    
+    .userProfileSection {
+        padding: var(--gap-small);
+        margin-bottom: var(--gap-small);
+    }
+    
+    .userName {
+        font-size: var(--font-size-body);
+    }
+    
+    .userInfo p {
+        font-size: var(--font-size-small);
+    }
+    
+    .userStats {
+        margin-top: var(--gap-tiny);
+        gap: var(--gap-tiny);
+    }
+    
+    .statInfo {
+        padding: var(--gap-tiny) var(--gap-small);
+        font-size: var(--font-size-tiny);
+    }
+    
+    .label {
+        font-size: calc(var(--font-size-tiny) - 0.05em);
+    }
+}

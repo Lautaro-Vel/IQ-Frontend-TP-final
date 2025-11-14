@@ -1,0 +1,327 @@
+.profileContainer {
+    max-width: var(--container-large);
+    margin: 0 auto;
+    padding: var(--gap-xlarge) var(--gap-large);
+    font-family: var(--letter-font-family-2);
+    background-color: var(--blue-gamma-dark);
+    border-radius: var(--gap-large);
+    color: var(--letter-color-white);
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.profileHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--gap-xlarge);
+    flex-wrap: wrap;
+    gap: var(--gap-medium);
+}
+
+.profileTitle {
+    font-size: var(--font-size-title);
+    font-family: var(--letter-font-family-1);
+    font-weight: 700;
+    color: var(--letter-color-white);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.backButton, .editButton, .saveButton, .cancelButton {
+    padding: var(--gap-small) var(--gap-large);
+    border: none;
+    border-radius: var(--gap-medium);
+    cursor: pointer;
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-1);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-small);
+}
+
+.backHomeButton {
+    background-color: transparent;
+    color: var(--letter-color-white);
+    border: 2px solid var(--letter-color-white);
+}
+
+.backHomeButton:hover {
+    background-color: var(--letter-color-white);
+    color: var(--blue-gamma-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+.editButton {
+    background-color: var(--blue-gamma-light);
+    color: var(--letter-color-white);
+}
+
+.editButton:hover {
+    background-color: var(--blue-gamma-intermediate);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profileContent {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: var(--gap-xlarge);
+    border-radius: var(--gap-medium);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profileForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-large);
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+}
+
+.inputGroup label {
+    font-size: var(--font-size-subtitle);
+    font-family: var(--letter-font-family-1);
+    font-weight: 600;
+    color: var(--letter-color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.inputGroup input {
+    padding: var(--gap-medium);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--gap-small);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--letter-color-white);
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-2);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.inputGroup input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.inputGroup input:focus {
+    outline: none;
+    border-color: var(--blue-gamma-light);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(174, 195, 176, 0.3);
+}
+
+.inputGroup input:disabled {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.disabledInput {
+    opacity: 0.7;
+}
+
+.inputHelp {
+    font-size: var(--font-size-small);
+    font-family: var(--letter-font-family-2);
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin-top: var(--gap-tiny);
+}
+
+.buttonGroup {
+    display: flex;
+    gap: var(--gap-medium);
+    margin-top: var(--gap-large);
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.saveButton {
+    background-color: var(--blue-gamma-intense);
+    color: var(--letter-color-white);
+    min-width: 150px;
+}
+
+.saveButton:hover:not(:disabled) {
+    background-color: var(--blue-gamma-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.saveButton:disabled {
+    background-color: var(--letter-color-gray);
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+}
+
+.cancelButton {
+    background-color: var(--letter-color-gray);
+    color: var(--letter-color-white);
+}
+
+.cancelButton:hover {
+    background-color: #545b62;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.successMessage {
+    background-color: rgba(40, 167, 69, 0.2);
+    border: 2px solid #28a745;
+    color: #28a745;
+    padding: var(--gap-medium);
+    border-radius: var(--gap-medium);
+    font-weight: 600;
+    font-family: var(--letter-font-family-1);
+    text-align: center;
+    margin-bottom: var(--gap-large);
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) {
+    .profileContainer {
+        padding: var(--gap-large) var(--gap-medium);
+        margin: var(--gap-medium);
+    }
+    
+    .profileTitle {
+        font-size: var(--font-size-subtitle);
+    }
+    
+    .profileContent {
+        padding: var(--gap-large);
+    }
+    
+    .inputGroup label {
+        font-size: var(--font-size-body);
+    }
+    
+    .inputGroup input {
+        padding: var(--gap-small) var(--gap-medium);
+        font-size: var(--font-size-body);
+    }
+    
+    .backButton, .editButton, .saveButton, .cancelButton {
+        padding: var(--gap-small) var(--gap-medium);
+        font-size: var(--font-size-body);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .profileContainer {
+        padding: var(--gap-large) var(--gap-small);
+        margin: var(--gap-small);
+        border-radius: var(--gap-medium);
+    }
+
+    .profileHeader {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--gap-medium);
+        text-align: center;
+    }
+
+    .profileTitle {
+        font-size: var(--font-size-subtitle);
+    }
+
+    .profileContent {
+        padding: var(--gap-large) var(--gap-medium);
+    }
+
+    .profileForm {
+        gap: var(--gap-medium);
+    }
+
+    .inputGroup {
+        gap: var(--gap-small);
+    }
+
+    .inputGroup label {
+        font-size: var(--font-size-body);
+    }
+
+    .inputGroup input {
+        padding: var(--gap-small);
+        font-size: var(--font-size-body);
+    }
+
+    .inputHelp {
+        font-size: var(--font-size-small);
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: var(--gap-small);
+    }
+
+    .backButton, .editButton, .saveButton, .cancelButton {
+        width: 100%;
+        justify-content: center;
+        padding: var(--gap-small) var(--gap-medium);
+        font-size: var(--font-size-body);
+    }
+
+    .successMessage {
+        padding: var(--gap-small) var(--gap-medium);
+        font-size: var(--font-size-small);
+    }
+}
+
+@media (max-width: 479px) {
+    .profileContainer {
+        margin: var(--gap-tiny);
+        padding: var(--gap-medium) var(--gap-small);
+        border-radius: var(--gap-medium);
+    }
+
+    .profileHeader {
+        margin-bottom: var(--gap-large);
+    }
+
+    .profileTitle {
+        font-size: var(--font-size-body);
+    }
+
+    .profileContent {
+        padding: var(--gap-medium) var(--gap-small);
+    }
+
+    .inputGroup label {
+        font-size: var(--font-size-body);
+    }
+
+    .inputGroup input {
+        padding: var(--gap-tiny) var(--gap-small);
+        font-size: var(--font-size-small);
+    }
+
+    .buttonGroup {
+        gap: var(--gap-tiny);
+        margin-top: var(--gap-medium);
+    }
+
+    .backButton, .editButton, .saveButton, .cancelButton {
+        padding: var(--gap-tiny) var(--gap-small);
+        font-size: var(--font-size-small);
+    }
+
+    .successMessage {
+        padding: var(--gap-small);
+        font-size: var(--font-size-small);
+    }
+}

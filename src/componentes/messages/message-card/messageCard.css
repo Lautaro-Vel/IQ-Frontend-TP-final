@@ -1,0 +1,178 @@
+.messageCard {
+    max-width: var(--container-medium);
+    padding: var(--gap-medium);
+    border-radius: var(--gap-large);
+    margin-bottom: var(--gap-small);
+    word-wrap: break-word;
+    position: relative;
+    animation: slideInMessage 0.3s ease-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    hyphens: auto;
+}
+
+.myMessage {
+    align-self: flex-end;
+    background: var(--blue-gamma-light);
+    color: var(--letter-color-white);
+    margin-left: auto;
+    border: 2px solid var(--blue-gamma-intermediate);
+}
+
+.otherMessage {
+    align-self: flex-start;
+    background: var(--letter-color-white);
+    color: var(--blue-gamma-dark);
+    border: 2px solid var(--blue-gamma-intermediate);
+    margin-right: auto;
+}
+
+.messageAuthor {
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    font-family: var(--letter-font-family-1);
+    margin-bottom: var(--gap-tiny);
+    color: var(--blue-gamma-dark);
+}
+
+.myMessage .messageAuthor {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.messageContent {
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-2);
+    line-height: 1.6;
+    margin-bottom: var(--gap-small);
+    word-break: break-word;
+}
+
+.messageFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--gap-small);
+    gap: var(--gap-small);
+}
+
+.messageTime {
+    font-size: var(--font-size-tiny);
+    font-family: var(--letter-font-family-2);
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+.myMessage .messageTime {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.otherMessage .messageTime {
+    color: var(--letter-color-gray);
+}
+
+.deleteMessageButton {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: var(--font-size-small);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    padding: var(--gap-tiny);
+    margin-left: var(--gap-small);
+    border-radius: var(--gap-tiny);
+}
+
+.deleteMessageButton:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.myMessage .deleteMessageButton {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.myMessage .deleteMessageButton:hover {
+    color: var(--letter-color-white);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.otherMessage .deleteMessageButton {
+    color: var(--letter-color-gray);
+}
+
+.otherMessage .deleteMessageButton:hover {
+    color: var(--blue-gamma-dark);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+@keyframes slideInMessage {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) {
+    .messageCard {
+        max-width: 75%;
+        padding: var(--gap-small) var(--gap-medium);
+    }
+    
+    .messageContent {
+        font-size: var(--font-size-body);
+        line-height: 1.5;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .messageCard {
+        max-width: 85%;
+        padding: var(--gap-small);
+        margin-bottom: var(--gap-tiny);
+    }
+    
+    .messageAuthor {
+        font-size: var(--font-size-tiny);
+        margin-bottom: calc(var(--gap-tiny) / 2);
+    }
+    
+    .messageContent {
+        font-size: var(--font-size-small);
+        line-height: 1.5;
+        margin-bottom: var(--gap-tiny);
+    }
+    
+    .messageFooter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--gap-tiny);
+        margin-top: var(--gap-tiny);
+    }
+    
+    .deleteMessageButton {
+        font-size: var(--font-size-tiny);
+        margin-left: 0;
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 479px) {
+    .messageCard {
+        max-width: 90%;
+        padding: var(--gap-tiny) var(--gap-small);
+    }
+    
+    .messageContent {
+        font-size: var(--font-size-small);
+    }
+    
+    .messageTime {
+        font-size: calc(var(--font-size-tiny) - 0.05em);
+    }
+}

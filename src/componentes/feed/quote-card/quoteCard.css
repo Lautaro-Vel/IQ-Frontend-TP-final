@@ -1,0 +1,151 @@
+.divCita {
+    background-color: var(--blue-gamma-dark);
+    width: var(--container-max-width);
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    padding: var(--container-padding);
+    overflow: hidden;
+    margin: var(--container-margin);
+}
+
+.userDivCita {
+    background-color: var(--background-color-dark--2);
+    border: 2px solid var(--blue-gamma-light);
+}
+
+.divContainerLinkDetails {
+    display: flex;
+    justify-content: flex-start;    
+    width: 100%;
+}
+
+.linkUserNameQuote {
+    text-decoration: none;
+}
+
+.userNameQuote {
+    width: fit-content;
+    color: var(--letter-color-white);
+    font-size: var(--font-size-title);
+    font-family: var(--letter-font-family-2);
+    letter-spacing: 1px;
+    padding-bottom: var(--gap-medium);
+}
+
+.paragraphUserQuote {
+    color: var(--letter-color-white);
+    font-size: var(--font-size-subtitle);
+    font-family: var(--letter-font-family-2);
+    letter-spacing: 1px;
+    padding: 0 calc(var(--gap-large) + 2px);
+    padding-bottom: var(--gap-large);
+    text-align: justify;
+    line-height: 1.4;
+}
+
+.authorQuote {
+    display: flex;
+    justify-content: flex-end;
+    color: var(--blue-gamma-light);
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-2);
+    letter-spacing: 1px;
+    padding-right: calc(var(--container-padding) + 20px);
+    padding-bottom: var(--gap-tiny);
+}
+
+.divButtonsQuote {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: var(--gap-small);
+}
+
+.buttonLikes {
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.buttonLikes:hover {
+    transform: scale(1.1);
+}   
+
+.deleteButtonQuote {
+    background-color: transparent;
+    border: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.deleteButtonQuote:hover {
+    transform: scale(1.1);
+}
+
+.spanLikes {
+    color: var(--blue-gamma-light);
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-2);
+    letter-spacing: 1px;
+    display: flex;
+    gap: var(--gap-tiny);
+    padding-left: var(--gap-medium);
+}
+
+.bi-trash {
+    color: var(--blue-gamma-light);
+    font-size: var(--font-size-body);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .divCita {
+        margin: var(--gap-medium) var(--gap-small);
+        padding: var(--container-padding);
+    }
+    
+    .paragraphUserQuote {
+        padding: 0 var(--gap-medium);
+        padding-bottom: var(--gap-medium);
+        text-align: left;
+    }
+    
+    .authorQuote {
+        padding-right: var(--container-padding);
+        padding-bottom: var(--gap-small);
+    }
+}
+
+@media (max-width: 479px) {
+    .divCita {
+        margin: var(--gap-small);
+        padding: var(--container-padding);
+    }
+    
+    .userNameQuote {
+        padding-bottom: var(--gap-small);
+    }
+    
+    .paragraphUserQuote {
+        padding: 0 var(--gap-small);
+        padding-bottom: var(--gap-medium);
+        text-align: left;
+    }
+    
+    .authorQuote {
+        padding-right: calc(var(--container-padding) - 5px);
+        padding-bottom: var(--gap-medium);
+    }
+    
+    .spanLikes {
+        padding-left: var(--gap-small);
+    }
+}

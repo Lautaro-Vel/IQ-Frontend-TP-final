@@ -1,0 +1,129 @@
+.divHeaderFeedScreen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: var(--header-height);
+    padding: var(--gap-tiny) var(--gap-large);
+    background-color: var(--background-color-dark);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.linkIqLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(var(--header-height) - 10px);
+    height: var(--header-height);
+    text-decoration: none;
+    padding-left: var(--gap-tiny);
+    border-radius: 25px;
+}
+
+.iqLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+    font-family: var(--letter-font-family-1);
+    font-size: calc(var(--font-size-body) + 0.3em);
+    color: var(--letter-color-white);
+    border: 2px solid var(--letter-color-white);
+    border-radius: 25px;
+    letter-spacing: -2px;
+    padding-left: 3px;
+}
+
+.punto {
+    color: transparent;
+}
+
+.navLinks {
+    display: flex;
+    gap: var(--gap-large);
+}
+
+.linkGroups {
+    color: var(--letter-color-white);
+    text-decoration: none;
+    font-family: var(--letter-font-family-1);
+    font-size: var(--font-size-small);
+    padding: var(--button-padding);
+    border-radius: var(--gap-large);
+    transition: background-color 0.3s;
+}
+
+.linkGroups:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.linkProfile {
+    text-decoration: none;
+}
+
+.welcomeFeedScreen {
+    text-align: center;
+    color: var(--letter-color-white);
+    font-family: var(--letter-font-family-1);
+    font-size: var(--font-size-body);
+    margin: 0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.welcomeFeedScreen:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .navLinks {
+        gap: var(--gap-medium);
+    }
+    
+    .linkGroups {
+        font-size: var(--font-size-small);
+        padding: var(--button-padding);
+    }
+    
+    .welcomeFeedScreen {
+        font-size: var(--font-size-body);
+    }
+    
+    .iqLogo {
+        font-size: var(--font-size-body);
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 479px) {
+    .divHeaderFeedScreen {
+        padding: var(--gap-tiny) var(--gap-medium);
+    }
+    
+    .navLinks {
+        gap: var(--gap-small);
+    }
+    
+    .linkGroups {
+        font-size: var(--font-size-small);
+        padding: calc(var(--button-padding) * 0.8);
+    }
+    
+    .welcomeFeedScreen {
+        font-size: var(--font-size-body);
+    }
+    
+    .linkIqLogo {
+        width: calc(var(--header-height) - 5px);
+        height: calc(var(--header-height) - 5px);
+    }
+    
+    .iqLogo {
+        font-size: var(--font-size-body);
+    }
+}

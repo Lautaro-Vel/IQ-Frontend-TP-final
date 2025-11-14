@@ -1,0 +1,174 @@
+.formNewCita {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: var(--header-height);
+    padding: var(--gap-small) var(--gap-medium);
+    background-color: var(--background-color-dark);
+    bottom: 0;
+    z-index: 90;
+}
+
+.divLabelForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.labelAddCita {
+    color: var(--letter-color-white);
+    font-family: var(--letter-font-family-2);
+    font-size: var(--font-size-title);
+    padding-right: calc(var(--gap-large) + 10px);
+    white-space: nowrap;
+}
+
+.divContaiterInputButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-medium);
+}
+
+.divContainerInputs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-large);
+}
+
+.inputWriteCita {
+    width: clamp(300px, 40vw, 500px);
+    height: 40px;
+    border-radius: var(--gap-small);
+    border: 1px solid var(--blue-gamma-light);
+    background-color: var(--background-color-dark--2);
+    padding: var(--gap-tiny) var(--gap-small);
+    font-size: var(--font-size-small);
+    color: var(--letter-color-white);
+    font-family: var(--letter-font-family-2);
+}
+
+.inputWriteCita::placeholder {
+    color: var(--blue-gamma-light);
+}
+
+.inputWriteCita:focus {
+    outline: 2px solid var(--blue-gamma-intermediate);
+    border-color: var(--blue-gamma-intermediate);
+}
+
+.autorInput {
+    width: clamp(120px, 15vw, 160px);
+}
+
+.buttonSubmitCita {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(var(--header-height) - 10px);
+    height: calc(var(--header-height) - 10px);
+    border-radius: 25px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.buttonSubmitCita:hover {
+    transform: scale(1.05);
+}
+
+.bi-arrow-right-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--letter-color-white);
+    font-size: calc(var(--header-height) - 15px);
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) {
+    .labelAddCita {
+        padding-right: var(--gap-large);
+    }
+    
+    .divContainerInputs {
+        gap: var(--gap-medium);
+    }
+    
+    .inputWriteCita {
+        width: clamp(250px, 35vw, 400px);
+    }
+}
+
+@media (max-width: 767px) {
+    .formNewCita {
+        flex-direction: column;
+        height: auto;
+        padding: var(--gap-medium);
+        gap: var(--gap-small);
+    }
+    
+    .divLabelForm {
+        width: 100%;
+    }
+    
+    .labelAddCita {
+        padding-right: 0;
+        text-align: center;
+        font-size: var(--font-size-title);
+    }
+    
+    .divContaiterInputButton {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .divContainerInputs {
+        flex-direction: column;
+        gap: var(--gap-small);
+        width: 100%;
+        align-items: center;
+    }
+    
+    .inputWriteCita {
+        width: min(90vw, 350px);
+    }
+    
+    .autorInput {
+        width: min(90vw, 200px);
+    }
+}
+
+@media (max-width: 479px) {
+    .formNewCita {
+        padding: var(--gap-medium) var(--gap-small);
+    }
+    
+    .labelAddCita {
+        font-size: var(--font-size-title);
+    }
+    
+    .inputWriteCita {
+        width: min(85vw, 280px);
+        height: 35px;
+    }
+    
+    .autorInput {
+        width: min(85vw, 180px);
+        height: 35px;
+    }
+    
+    .buttonSubmitCita {
+        width: calc(var(--header-height) - 5px);
+        height: calc(var(--header-height) - 5px);
+    }
+    
+    .bi-arrow-right-circle {
+        font-size: calc(var(--header-height) - 10px);
+    }
+}

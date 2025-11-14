@@ -1,0 +1,53 @@
+import './messageCard.css'
+import React, { useContext } from 'react'
+import { useAuth } from '../../../contextos/authContext'
+import { messageContext } from '../../../contextos/messageContext'
+import { useParams } from 'react-router'
+
+const MessageCard = ({ _id, content, createdBy}) => {
+    const { user } = useAuth()
+    const { deleteMessageById } = useContext(messageContext)
+    const { groupId } = useParams()
+    const getIsMyMessage = () => {
+        if (user._id === createdBy._id) {
+            return true
+        } else {
+            return false
+        }
+    }
+    const getMessageClass = () => {
+        if (getIsMyMessage()) {
+            return 'messageCard myMessage'
+        } else {
+            return 'messageCard otherMessage'
+        }
+    }
+    const getDeleteButton = () => {
+        if (getIsMyMessage()) {
+            return (
+                <button 
+                    className='deleteMessageButton' 
+                    onClick={() => deleteMessageById(groupId, _id)}
+                >
+                    <i className="bi bi-trash"></i>
+                </button>
+            )
+        } else {
+            return null
+        }
+    }
+
+    return (
+        <div className={getMessageClass()}>
+            {!getIsMyMessage() && (
+                <div className="messageAuthor">{createdBy.name}</div>
+            )}
+            <div className="messageContent">{content}</div>
+            <div className="messageFooter">
+                {getDeleteButton()}
+            </div>
+        </div>
+    )
+}
+
+export default MessageCard

@@ -1,0 +1,29 @@
+.divContainerListCitas {
+    display: flex;
+    margin-top: calc(var(--header-height) + 70px);
+    margin-bottom: 90px;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: var(--gap-large);
+    padding: 0 var(--gap-small);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .divContainerListCitas {
+        margin-top: calc(var(--header-height) + 40px);
+        margin-bottom: 135px;
+        gap: var(--gap-medium);
+    }
+}
+
+@media (max-width: 479px) {
+    .divContainerListCitas {
+        margin-top: calc(var(--header-height) + 30px);
+        margin-bottom: 180px;
+        gap: var(--gap-small);
+        padding: 0 var(--gap-tiny);
+    }
+}

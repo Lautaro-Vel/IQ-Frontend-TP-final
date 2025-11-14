@@ -1,0 +1,313 @@
+.divContainerChatMessages {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--gap-large);
+    background: var(--background-color-light);
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.divContainerChatMessages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.divContainerChatMessages::-webkit-scrollbar-track {
+    background: var(--blue-gamma-intermediate);
+    border-radius: var(--gap-tiny);
+}
+
+.divContainerChatMessages::-webkit-scrollbar-thumb {
+    background: var(--blue-gamma-light);
+    border-radius: var(--gap-tiny);
+}
+
+.divContainerChatMessages::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-gamma-dark);
+}
+
+.noMessagesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 400px;
+    text-align: center;
+    background: var(--letter-color-white);
+    border-radius: var(--gap-medium);
+    margin: var(--gap-large);
+    padding: var(--gap-xlarge);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--blue-gamma-intermediate);
+    position: relative;
+    overflow: hidden;
+}
+
+.noMessagesContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-gamma-light), var(--blue-gamma-intermediate));
+}
+
+.noMessagesText {
+    color: var(--letter-color-gray);
+    font-style: italic;
+    font-size: var(--font-size-body);
+    font-family: var(--letter-font-family-2);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-medium);
+}
+
+.noMessagesText i {
+    font-size: calc(var(--font-size-title) * 2);
+    color: var(--blue-gamma-intermediate);
+    margin-bottom: var(--gap-small);
+}
+
+.noMessagesText .message-title {
+    font-size: var(--font-size-subtitle);
+    font-family: var(--letter-font-family-1);
+    font-weight: 600;
+    color: var(--blue-gamma-dark);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.noMessagesText .message-subtitle {
+    font-size: var(--font-size-body);
+    color: var(--letter-color-gray);
+    margin: 0;
+    max-width: 300px;
+}
+
+.messagesList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-medium);
+    padding: var(--gap-medium) 0;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading state for messages */
+.messagesLoading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: var(--blue-gamma-light);
+    font-family: var(--letter-font-family-2);
+    font-size: var(--font-size-body);
+}
+
+.messagesLoading .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(174, 195, 176, 0.2);
+    border-top: 3px solid var(--blue-gamma-light);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: var(--gap-medium);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Message grouping by date */
+.dateGroup {
+    margin: var(--gap-large) 0;
+}
+
+.dateLabel {
+    text-align: center;
+    margin-bottom: var(--gap-medium);
+    position: relative;
+}
+
+.dateLabel::before,
+.dateLabel::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background: var(--blue-gamma-intermediate);
+}
+
+.dateLabel::before {
+    left: 0;
+}
+
+.dateLabel::after {
+    right: 0;
+}
+
+.dateLabel span {
+    background: var(--background-color-light);
+    color: var(--letter-color-gray);
+    font-size: var(--font-size-tiny);
+    font-family: var(--letter-font-family-1);
+    font-weight: 500;
+    padding: var(--gap-tiny) var(--gap-small);
+    border-radius: var(--gap-tiny);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) {
+    .divContainerChatMessages {
+        padding: var(--gap-medium);
+    }
+    
+    .noMessagesContainer {
+        margin: var(--gap-medium);
+        padding: var(--gap-large);
+        min-height: 350px;
+    }
+    
+    .noMessagesText {
+        font-size: var(--font-size-body);
+        gap: var(--gap-small);
+    }
+    
+    .noMessagesText i {
+        font-size: var(--font-size-title);
+    }
+    
+    .noMessagesText .message-title {
+        font-size: var(--font-size-body);
+    }
+    
+    .noMessagesText .message-subtitle {
+        font-size: var(--font-size-small);
+        max-width: 250px;
+    }
+    
+    .messagesList {
+        gap: var(--gap-small);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .divContainerChatMessages {
+        padding: var(--gap-small);
+    }
+    
+    .noMessagesContainer {
+        margin: var(--gap-small);
+        padding: var(--gap-medium);
+        min-height: 300px;
+    }
+    
+    .noMessagesText {
+        font-size: var(--font-size-small);
+        gap: var(--gap-small);
+    }
+    
+    .noMessagesText i {
+        font-size: var(--font-size-subtitle);
+        margin-bottom: var(--gap-tiny);
+    }
+    
+    .noMessagesText .message-title {
+        font-size: var(--font-size-body);
+    }
+    
+    .noMessagesText .message-subtitle {
+        font-size: var(--font-size-small);
+        max-width: 200px;
+    }
+    
+    .messagesList {
+        gap: var(--gap-small);
+        padding: var(--gap-small) 0;
+    }
+    
+    .messagesLoading {
+        height: 150px;
+        font-size: var(--font-size-small);
+    }
+    
+    .messagesLoading .spinner {
+        width: 35px;
+        height: 35px;
+        border-width: 3px;
+        margin-right: var(--gap-small);
+    }
+    
+    .dateGroup {
+        margin: var(--gap-medium) 0;
+    }
+    
+    .dateLabel span {
+        font-size: var(--font-size-tiny);
+        padding: calc(var(--gap-tiny) / 2) var(--gap-tiny);
+    }
+}
+
+@media (max-width: 479px) {
+    .divContainerChatMessages {
+        padding: var(--gap-tiny);
+    }
+    
+    .noMessagesContainer {
+        margin: var(--gap-tiny);
+        padding: var(--gap-small);
+        min-height: 250px;
+    }
+    
+    .noMessagesText {
+        font-size: var(--font-size-small);
+    }
+    
+    .noMessagesText i {
+        font-size: var(--font-size-body);
+    }
+    
+    .noMessagesText .message-title {
+        font-size: var(--font-size-small);
+    }
+    
+    .noMessagesText .message-subtitle {
+        font-size: var(--font-size-small);
+        max-width: 180px;
+    }
+    
+    .messagesList {
+        gap: var(--gap-tiny);
+        padding: var(--gap-tiny) 0;
+    }
+    
+    .messagesLoading {
+        height: 120px;
+        font-size: var(--font-size-small);
+    }
+    
+    .messagesLoading .spinner {
+        width: 30px;
+        height: 30px;
+        border-width: 2px;
+        margin-right: var(--gap-tiny);
+    }
+}

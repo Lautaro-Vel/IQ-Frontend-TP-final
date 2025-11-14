@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} 
+
+:root {
+    --background-color-dark: #061216;
+    --background-color-dark--2: #001720;
+    --blue-gamma-dark: #0d3544;
+    --blue-gamma-intermediate: #598392;
+    --blue-gamma-light: #aec3b0;
+    --letter-color-white: #eff6e0;
+    
+    --letter-font-family-1: 'Boldonse', system-ui;
+    --letter-font-family-2: 'Abel', system-ui;
+    
+    --container-max-width: 950px;
+    --container-padding: 40px;
+    --container-margin: 20px;
+    --border-radius: 20px;
+    --header-height: 70px;
+    --button-padding: 8px 16px;
+    --input-padding: 0.8rem;
+    
+    --font-size-title: 1.8em;
+    --font-size-subtitle: 1.3em;
+    --font-size-body: 1.2em;
+    --font-size-small: 1rem;
+    
+    --gap-large: 20px;
+    --gap-medium: 15px;
+    --gap-small: 10px;
+    --gap-tiny: 5px;
+}
+
+@media (min-width: 1400px) and (max-width: 2000px) {
+    :root {
+        --container-max-width: 1200px;
+        --container-padding: 50px;
+        --font-size-title: 2.2em;
+        --font-size-subtitle: 1.6em;
+        --font-size-body: 1.4em;
+        --header-height: 80px;
+        --gap-large: 30px;
+        --gap-medium: 20px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1399px) {
+    :root {
+        --container-max-width: 900px;
+        --container-padding: 35px;
+        --font-size-title: 1.6em;
+        --font-size-subtitle: 1.2em;
+        --font-size-body: 1.1em;
+        --gap-large: 18px;
+        --gap-medium: 12px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --container-max-width: 95%;
+        --container-padding: 25px;
+        --font-size-title: 1.5em;
+        --font-size-subtitle: 1.1em;
+        --font-size-body: 1em;
+        --header-height: 60px;
+        --gap-large: 15px;
+        --gap-medium: 10px;
+        --gap-small: 8px;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+    :root {
+        --container-max-width: 95%;
+        --container-padding: 20px;
+        --container-margin: 15px;
+        --border-radius: 15px;
+        --font-size-title: 1.3em;
+        --font-size-subtitle: 1em;
+        --font-size-body: 0.9em;
+        --font-size-small: 0.8rem;
+        --header-height: 55px;
+        --button-padding: 6px 12px;
+        --input-padding: 0.6rem;
+        --gap-large: 12px;
+        --gap-medium: 8px;
+        --gap-small: 6px;
+        --gap-tiny: 3px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 479px) {
+    :root {
+        --container-max-width: 95%;
+        --container-padding: 15px;
+        --container-margin: 10px;
+        --border-radius: 12px;
+        --font-size-title: 1.2em;
+        --font-size-subtitle: 0.9em;
+        --font-size-body: 0.8em;
+        --font-size-small: 0.7rem;
+        --header-height: 50px;
+        --button-padding: 4px 8px;
+        --input-padding: 0.5rem;
+        --gap-large: 10px;
+        --gap-medium: 6px;
+        --gap-small: 4px;
+        --gap-tiny: 2px;
+    }
+}
