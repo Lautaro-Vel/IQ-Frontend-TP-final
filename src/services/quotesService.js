@@ -5,13 +5,14 @@ const URL_API_QUOTES = ENVIRONMENT.URL_API + "/quotes"
 
 export async function getAllQuotes() {
     const quotesUrl = `${URL_API_QUOTES}/home-quotes`
-    
+    const token = localStorage.getItem('token')
     const httpRequest = await fetch (
         quotesUrl,
         {
             method: HTTP_METHODS.GET,
             headers: {
-                [HEADERS.CONTENT_TYPE]: CONTENT_TYPE_VALUES.JSON
+                [HEADERS.CONTENT_TYPE]: CONTENT_TYPE_VALUES.JSON,
+                'Authorization': `Bearer ${token}`
             }
         }
     )
