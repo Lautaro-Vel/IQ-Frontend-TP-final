@@ -1,26 +1,46 @@
-.errorMessageContainer {
+
+/* Floating global error alert */
+.errorMessageFloating {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 100%;
+    max-width: 420px;
+    pointer-events: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-    gap: var(--gap-large);
-    padding: var(--gap-xlarge);
-    text-align: center;
-    background: var(--background-color-light);
-    box-sizing: border-box;
+    animation: fadeInDown 0.5s;
 }
 
 .errorCard {
     background: var(--letter-color-white);
     border-radius: var(--gap-medium);
-    padding: var(--gap-xlarge);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: var(--gap-large) var(--gap-xlarge);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     border: 2px solid #ff3b30;
-    max-width: 500px;
     width: 100%;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.errorCloseButton {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ff3b30;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.2s;
+}
+.errorCloseButton:hover {
+    color: #b71c1c;
 }
 
 .errorCard::before {
@@ -34,30 +54,38 @@
 }
 
 .errorIcon {
-    font-size: calc(var(--font-size-title) * 2);
+    font-size: 2.5rem;
     color: #ff3b30;
-    margin-bottom: var(--gap-large);
+    margin-bottom: var(--gap-medium);
     animation: shake 0.5s ease-in-out;
 }
 
 .errorTitle {
     color: #ff3b30;
-    font-size: var(--font-size-subtitle);
+    font-size: 1.2rem;
     font-family: var(--letter-font-family-1);
     font-weight: 700;
-    margin: 0 0 var(--gap-medium) 0;
+    margin: 0 0 var(--gap-small) 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    text-align: center;
+}
+.errorStatus {
+    font-size: 1rem;
+    color: #b71c1c;
+    margin-left: 4px;
+    font-weight: 400;
 }
 
 .errorText {
     color: var(--blue-gamma-dark);
-    font-size: var(--font-size-body);
+    font-size: 1rem;
     font-family: var(--letter-font-family-2);
     margin: 0;
     max-width: 100%;
     line-height: 1.6;
     text-align: center;
+    word-break: break-word;
 }
 
 .errorActions {
@@ -116,8 +144,19 @@
 
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-3px); }
-    75% { transform: translateX(3px); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* Quick error message (inline) */
@@ -168,83 +207,48 @@
     color: #ff6b6b;
 }
 
-/* Tablet adjustments */
 @media (max-width: 1023px) {
-    .errorMessageContainer {
-        padding: var(--gap-large) var(--gap-medium);
+    .errorMessageFloating {
+        top: 16px;
+        max-width: 95vw;
     }
-    
     .errorCard {
-        padding: var(--gap-large);
-        max-width: 450px;
+        padding: var(--gap-medium);
+        max-width: 95vw;
     }
-    
     .errorIcon {
-        font-size: var(--font-size-title);
-        margin-bottom: var(--gap-medium);
+        font-size: 2rem;
     }
-    
     .errorTitle {
-        font-size: var(--font-size-body);
-        margin-bottom: var(--gap-small);
+        font-size: 1rem;
     }
-    
     .errorText {
-        font-size: var(--font-size-body);
-    }
-    
-    .retryButton,
-    .backHomeButton {
-        padding: var(--gap-small) var(--gap-medium);
-        font-size: var(--font-size-body);
-        min-width: 100px;
+        font-size: 0.95rem;
     }
 }
 
-/* Mobile adjustments */
 @media (max-width: 767px) {
-    .errorMessageContainer {
-        padding: var(--gap-medium) var(--gap-small);
-        gap: var(--gap-medium);
+    .errorMessageFloating {
+        top: 8px;
+        max-width: 98vw;
     }
-    
     .errorCard {
-        padding: var(--gap-medium);
-        max-width: 100%;
-    }
-    
-    .errorIcon {
-        font-size: var(--font-size-subtitle);
-        margin-bottom: var(--gap-small);
-    }
-    
-    .errorTitle {
-        font-size: var(--font-size-body);
-        margin-bottom: var(--gap-small);
-    }
-    
-    .errorText {
-        font-size: var(--font-size-small);
-        line-height: 1.5;
-    }
-    
-    .errorActions {
-        margin-top: var(--gap-medium);
-        flex-direction: column;
-        gap: var(--gap-small);
-    }
-    
-    .retryButton,
-    .backHomeButton {
-        width: 100%;
         padding: var(--gap-small);
-        font-size: var(--font-size-small);
-        min-width: auto;
+        max-width: 98vw;
     }
-    
-    .errorMessageInline {
-        padding: var(--gap-tiny) var(--gap-small);
-        font-size: var(--font-size-small);
+    .errorIcon {
+        font-size: 1.5rem;
+    }
+    .errorTitle {
+        font-size: 0.95rem;
+    }
+    .errorText {
+        font-size: 0.9rem;
+    }
+    .errorCloseButton {
+        top: 6px;
+        right: 10px;
+        font-size: 1.2rem;
     }
 }
 

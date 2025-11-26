@@ -1,7 +1,7 @@
 import { HTTP_METHODS, HEADERS, CONTENT_TYPE_VALUES } from '../dictionary/httpDictionary.js'
 import ENVIRONMENT from '../config/environmentConfig.js'
 
-const URL_API_USERS = ENVIRONMENT.URL_API + "/users"
+const URL_API_USERS = ENVIRONMENT.URL_API + "/user"
 export async function getUserProfile() {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (

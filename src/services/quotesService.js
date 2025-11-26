@@ -2,6 +2,7 @@ import { HTTP_METHODS, HEADERS, CONTENT_TYPE_VALUES } from '../dictionary/httpDi
 import ENVIRONMENT from '../config/environmentConfig.js'
 
 const URL_API_QUOTES = ENVIRONMENT.URL_API + "/quotes"
+
 export async function getAllQuotes() {
     const quotesUrl = `${URL_API_QUOTES}/home-quotes`
     

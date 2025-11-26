@@ -11,8 +11,6 @@ export async function register(userData) {
     }
     
     const registerUrl = `${URL_API_AUTH}/register`
-    console.log('🔍 Intentando registrar en:', registerUrl)
-    console.log('📤 Datos enviados:', user)
     
     try {
         const httpRequest = await fetch(registerUrl, {
@@ -23,14 +21,12 @@ export async function register(userData) {
             body: JSON.stringify(user)
         })
         
-        console.log('📊 Status de respuesta:', httpRequest.status)
         
         if (!httpRequest.ok) {
             console.error('❌ Error HTTP:', httpRequest.status, httpRequest.statusText)
         }
         
         const httpResponse = await httpRequest.json()
-        console.log('📨 Respuesta recibida:', httpResponse)
         
         if(!httpResponse.ok) {
             throw new Error(httpResponse.message || 'Error en el registro')
