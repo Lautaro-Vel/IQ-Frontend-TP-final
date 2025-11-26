@@ -110,6 +110,8 @@ export async function leaveGroup(groupId) {
 
 export const groupsService = {
     getAllGroups,
+    getGroupById,
+    getMyGroups,
     createGroup,
     joinGroup,
     leaveGroup

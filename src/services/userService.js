@@ -78,8 +78,8 @@ export async function getUserById(userId) {
 }
 
 export const userService = {
-    getUserProfile,
-    updateUserProfile,
-    deleteUserAccount,
-    getUserById
+    getProfile: getUserProfile,
+    updateProfile: updateUserProfile,
+    deleteAccount: deleteUserAccount,
+    getUserById: getUserById
 }

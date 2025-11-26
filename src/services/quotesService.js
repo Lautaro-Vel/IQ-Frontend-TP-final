@@ -101,6 +101,7 @@ export async function getQuotesByUser(userId) {
 
 export const quotesService = {
     getAllQuotes,
+    getMyQuotes,
     createQuote,
     deleteQuote,
     getQuotesByUser

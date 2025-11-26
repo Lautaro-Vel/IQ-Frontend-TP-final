@@ -44,7 +44,7 @@ export default function GroupList() {
     }
     const isUserInGroup = (groupId) => {
         for (let i = 0; i < myGroups.length; i++) {
-            if (myGroups[i]._id === groupId) {
+            if (myGroups[i].group && myGroups[i].group._id === groupId) {
                 return true
             }
         }
@@ -58,25 +58,19 @@ export default function GroupList() {
         }
     }
     const getJoinButtonText = (group) => {
-        if (group.members?.length >= group.maxMembers) {
+        const memberCount = group.members?.length || 0
+        const maxMembers = group.maxMembers || 10
+        if (memberCount >= maxMembers) {
             return 'Lleno'
         } else {
             return 'Unirse'
         }
     }
     const getMemberCount = (group) => {
-        if (group.members.length) {
-            return group.members.length
-        } else {
-            return 0
-        }
+        return group.members?.length || 0
     }
     const getCreatorName = (group) => {
-        if (group.createdBy.name) {
-            return group.createdBy.name
-        } else {
-            return 'Usuario'
-        }
+        return group.createdBy?.name || 'Usuario'
     }
     return (
         <div className="group-list-container">
@@ -119,7 +113,6 @@ export default function GroupList() {
                 </form>
             )}
             <div className="groups-sections">
-                {/* Mis Grupos */}
                 <section className="my-groups-section">
                     <h2>Mis Grupos ({myGroups.length})</h2>
                     {myGroups.length === 0 && (
@@ -127,13 +120,16 @@ export default function GroupList() {
                     )}
                     {myGroups.length > 0 && (
                         <div className="groups-grid">
-                            {myGroups.map((group) => (
+                            {myGroups.map((memberGroup) => {
+                                const group = memberGroup.group
+                                if (!group) return null
+                                return (
                                 <div key={group._id} className="group-card my-group">
-                                    <h3>{group.name}</h3>
+                                    <h3>{group.groupName || group.name}</h3>
                                     <p>{group.description}</p>
                                     <div className="group-stats">
                                         <span>Miembros: {getMemberCount(group)}</span>
-                                        <span>Máximo: {group.maxMembers}</span>
+                                        <span>Máximo: {group.maxMembers || 10}</span>
                                     </div>
                                     <div className="group-actions">
                                         <button 
@@ -147,7 +143,8 @@ export default function GroupList() {
                                         </Link>
                                     </div>
                                 </div>
-                            ))}
+                                )
+                            })}
                         </div>
                     )}
                 </section>
@@ -180,7 +177,7 @@ export default function GroupList() {
                                             <button 
                                                 className="btn-join"
                                                 onClick={() => handleJoinGroup(group._id)}
-                                                disabled={group.members.length >= group.maxMembers}
+                                                disabled={(group.members?.length || 0) >= (group.maxMembers || 10)}
                                             >
                                                 {getJoinButtonText(group)}
                                             </button>

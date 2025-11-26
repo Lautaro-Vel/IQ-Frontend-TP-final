@@ -74,7 +74,6 @@ const AuthProvider = ({ children }) => {
             }
         } 
         catch (error) {
-            console.error('AuthContext: Error en login:', error)
             setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         }
@@ -88,15 +87,18 @@ const AuthProvider = ({ children }) => {
         try {
             const response = await authService.register(userData)
             if (response.ok) {
-                return {message: 'Registro exitoso! Revisa tu email para verificar tu cuenta.' }
+                return { 
+                    ok: true, 
+                    message: response.message || 'Registro exitoso! Revisa tu email para verificar tu cuenta.' 
+                }
             } else {
                 setError({ status: response.status, message: response.message })
-                return false
+                return { ok: false }
             }
         } 
         catch (error) {
             setError({ status: 500, message: error.message || 'Error de conexión' })
-            return false 
+            return { ok: false }
         }
         finally {
             setLoading(false)

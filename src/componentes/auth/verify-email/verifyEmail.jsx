@@ -9,7 +9,7 @@ function VerifyEmail() {
     const { token } = useParams()
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true)
-    const [verification, setverification] = useState(false)
+    const [verificacionExitosa, setVerificacionExitosa] = useState(false)
     const [error, setError] = useState('')
 
     useEffect(() => {
@@ -24,14 +24,14 @@ function VerifyEmail() {
         try {
             setLoading(true)
             const response = await verifyEmail(token)
-            setverification(true)
+            setVerificacionExitosa(true)
             setError('')
             setTimeout(() => {
                 navigate('/login')
             }, 3000)
         } catch (error) {
             setError(error.message || 'Error al verificar el email')
-            setverification(false)
+            setVerificacionExitosa(false)
         } finally {
             setLoading(false)
         }
@@ -50,12 +50,12 @@ function VerifyEmail() {
     return (
         <div className="verifyEmailContainer">
             <div className="verifyEmailBox">
-                {verification && (
+                {verificacionExitosa && (
                     <>
-                        <div className="verifyEmailIcon success">
+                        <div className="verifyEmailIcon exito">
                             ✓
                         </div>
-                        <h1 className="verifyEmailTitle success">
+                        <h1 className="verifyEmailTitle exito">
                             ¡Email Verificado!
                         </h1>
                         <p className="verifyEmailMessage">
@@ -70,7 +70,7 @@ function VerifyEmail() {
                         </button>
                     </>
                 )}
-                {!verification && (
+                {!verificacionExitosa && (
                     <>
                         <div className="verifyEmailIcon error">
                             ✗

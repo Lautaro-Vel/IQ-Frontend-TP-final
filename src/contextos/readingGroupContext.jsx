@@ -22,7 +22,7 @@ const GroupContextProvider = ({ children }) => {
         try {
             const response = await getAllGroups()
             if (response.ok) {
-                setAllGroups(response.data)
+                setAllGroups(response.data.groups)
             } else {
                 setError({ status: response.status, message: response.message })
             }
@@ -40,7 +40,7 @@ const GroupContextProvider = ({ children }) => {
         try {
             const response = await getMyGroups()
             if (response.ok) {
-                setMyGroups(response.data)
+                setMyGroups(response.data.groups)
             } else {
                 setError({ status: response.status, message: response.message })
             }
@@ -58,13 +58,14 @@ const GroupContextProvider = ({ children }) => {
         try {
             const response = await getGroupById(groupId)
             if (response.ok) {
-                setGroup(response.data)
-                return response.data
+                setGroup(response.data.group)
+                return response.data.group
             } else {
                 setError({ status: response.status, message: response.message })
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {
@@ -75,16 +76,20 @@ const GroupContextProvider = ({ children }) => {
         setLoading(true)
         setError('')
         try {
-            const response = await createGroup(groupData)
+            const response = await createGroup({
+                groupName: groupData.name,
+                description: groupData.description
+            })
             if (response.ok) {
-                const newGroup = response.data
-                setMyGroups([...myGroups, newGroup])
+                const newGroup = response.data.group
+                await getMyGroupsList()
                 return newGroup
             } else {
                 setError({ status: response.status, message: response.message })
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {
@@ -97,19 +102,15 @@ const GroupContextProvider = ({ children }) => {
         try {
             const response = await joinGroup(groupId)
             if (response.ok) {
-                for (let i = 0; i < allGroups.length; i++) {
-                    if (allGroups[i]._id === groupId) {
-                        const joinedGroup = allGroups[i]
-                        setMyGroups([...myGroups, joinedGroup])
-                        break
-                    }
-                }
+                await getMyGroupsList()
+                await getAllGroupsList()
                 return response.data
             } else {
                 setError({ status: response.status, message: response.message })
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {
@@ -122,20 +123,15 @@ const GroupContextProvider = ({ children }) => {
         try {
             const response = await leaveGroup(groupId)
             if (response.ok) {
-                // Remover el grupo de myGroups usando for loop
-                const updatedGroups = []
-                for (let i = 0; i < myGroups.length; i++) {
-                    if (myGroups[i]._id !== groupId) {
-                        updatedGroups.push(myGroups[i])
-                    }
-                }
-                setMyGroups(updatedGroups)
+                await getMyGroupsList()
+                await getAllGroupsList()
                 return response.data
             } else {
                 setError({ status: response.status, message: response.message })
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {

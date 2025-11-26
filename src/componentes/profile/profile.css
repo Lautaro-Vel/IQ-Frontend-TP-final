@@ -178,6 +178,18 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.exitoMessage {
+    color: #4caf50;
+    background-color: rgba(76, 175, 80, 0.1);
+    padding: var(--gap-small);
+    border-radius: var(--gap-tiny);
+    margin: var(--gap-small) 0;
+    text-align: center;
+    font-size: var(--font-size-body);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    font-family: var(--letter-font-family-2);
+}
+
 .successMessage {
     background-color: rgba(40, 167, 69, 0.2);
     border: 2px solid #28a745;
@@ -320,7 +332,7 @@
         font-size: var(--font-size-small);
     }
 
-    .successMessage {
+    .exitoMessage {
         padding: var(--gap-small);
         font-size: var(--font-size-small);
     }

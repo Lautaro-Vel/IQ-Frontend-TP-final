@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { useContext } from 'react'
 import UserContext from '../../contextos/userContext'
 import LoadSpinner from '../../utils/loadSpinner/LoadSpinner'
@@ -10,6 +10,7 @@ export default function Profile() {
     const {userProfile, loading, error, updateUserProfile, updateUserTemporal} = useContext(UserContext)
     const [isEditing, setIsEditing] = useState(false)
     const [updateError, setUpdateError] = useState('')
+    const [actualizacion, setActualizacion] = useState('')
     const navigate = useNavigate()
 
     const handleInputChange = (event) => {
@@ -21,7 +22,7 @@ export default function Profile() {
         event.preventDefault()
         setUpdateError('')
         const request = await updateUserProfile({
-            name: userProfile.name,
+            userName: userProfile.name,
             userSurname: userProfile.userSurname,
             age: userProfile.age,
             profession: userProfile.profession,
@@ -29,7 +30,8 @@ export default function Profile() {
         })
         if (request) {
             setIsEditing(false)
-            setTimeout(() => setUpdateSuccess(''), 3000)
+            setActualizacion('Perfil actualizado correctamente')
+            setTimeout(() => setActualizacion(''), 3000)
         } else {
             setUpdateError(error)
         }
@@ -37,6 +39,7 @@ export default function Profile() {
     const handleCancel = () => {
         setIsEditing(false)
         setUpdateError('')
+        setActualizacion('')
     }
     const goHome = () => {
         navigate('/')
@@ -143,6 +146,7 @@ export default function Profile() {
                         />
                     </div>
                     {updateError && <ErrorMessage status={updateError.status} message={updateError.message} />}
+                    {actualizacion && <p className="exitoMessage">{actualizacion}</p>}
                     {isEditing && (
                         <div className="buttonGroup">
                             <button type="submit" className="saveButton" disabled={loading}>

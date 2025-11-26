@@ -21,7 +21,7 @@ export async function register(userData) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        throw new Error(httpResponse.message || 'Error en el registro')
     }
     return httpResponse
 }
@@ -37,7 +37,7 @@ export async function verifyEmail(token) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        throw new Error(httpResponse.message || 'Error al verificar el email')
     }
     return httpResponse
 }
@@ -59,7 +59,7 @@ export async function login(user) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        throw new Error(httpResponse.message || 'Error en el login')
     }
     return httpResponse
 }

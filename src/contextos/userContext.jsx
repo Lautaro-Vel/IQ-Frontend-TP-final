@@ -43,11 +43,14 @@ export function UserContextProvider({ children }) {
             const response = await userService.updateProfile(userData)
             if (response.ok) {
                 setUserProfile(response.data.user)
+                return true
             } else {
                 setError({ status: response.status, message: response.message })
+                return false
             }
         } 
         catch (error) {
+            setError({ status: 500, message: 'Error de conexión' })
             return false
         } 
         finally {

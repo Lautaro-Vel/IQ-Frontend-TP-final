@@ -18,12 +18,13 @@ const MessageContextProvider = ({ children }) => {
         try {
             const response = await getGroupMessages(groupId)
             if (response.ok) {
-                setMessages(response.data)
+                setMessages(response.data.messages)
             } else {
                 setError({ status: response.status, message: response.message })
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {
@@ -36,14 +37,16 @@ const MessageContextProvider = ({ children }) => {
         try {
             const response = await sendMessage(groupId, messageData)
             if (response.ok) {
-                const newMessage = response.data
+                const newMessage = response.data.newMessage
                 setMessages([...messages, newMessage])
                 return newMessage
             } else {
                 setError({ status: response.status, message: response.message })
+                return false
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {
@@ -66,9 +69,11 @@ const MessageContextProvider = ({ children }) => {
                 return response.data
             } else {
                 setError({ status: response.status, message: response.message })
+                return false
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {

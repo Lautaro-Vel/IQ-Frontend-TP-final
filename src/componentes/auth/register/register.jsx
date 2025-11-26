@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { useAuth } from '../../../contextos/authContext'
 import ErrorMessage from '../../../utils/error/ErrorMessage'
 import './register.css'
@@ -9,20 +9,19 @@ export default function Register() {
     const [gmail, setGmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [success, setSuccess] = useState('')
+    const [registroExitoso, setRegistroExitoso] = useState('')
     const { registerUser, error, loading } = useAuth()
     const navigate = useNavigate()
     const handleSubmit = async (event) => {
         event.preventDefault()
-        setSuccess('')        
+        setRegistroExitoso('')        
         if (password !== confirmPassword) {
-            setError({ status: 400, message: 'Las contraseñas no coinciden' })
-            setLoading(false)
+            alert('Las contraseñas no coinciden')
             return
         }
         const result = await registerUser({ name, gmail, password })
-        if (result.success) {
-            setSuccess(result.message)
+        if (result && result.ok) {
+            setRegistroExitoso(result.message)
             setTimeout(() => {
                 navigate('/login')
             }, 3000)
@@ -84,7 +83,7 @@ export default function Register() {
                         />
                     </div>
                     {error && <ErrorMessage status={error.status} message={error.message} />}
-                    {success && <p className="successMessage">{success}</p>}
+                    {registroExitoso && <p className="exitoMessage">{registroExitoso}</p>}
                     <button 
                         type="submit" 
                         className="registerButton"

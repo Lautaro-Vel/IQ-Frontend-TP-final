@@ -7,12 +7,11 @@ export default function MessageForm({ groupId }) {
     const [messageText, setMessageText] = useState('')
     const handleSendMessage = async (event) => {
         event.preventDefault()
-        //.trim() soluciona problemas de mensajes en blanco
         if (messageText.trim() === '') {
             return
         }
         const messageData = {
-            content: messageText.trim()
+            message: messageText.trim()
         }
         const result = await sendNewMessage(groupId, messageData)
         if (result) {
@@ -22,7 +21,6 @@ export default function MessageForm({ groupId }) {
     const handleInputChange = (event) => {
         setMessageText(event.target.value)
     }
-    //event.key === enter, para que al presionar enter, se accione al handleSendMessage
     const handleKeyDown = (event) => {
         if (event.key === 'Enter' && !event.shiftKey) {
             event.preventDefault()

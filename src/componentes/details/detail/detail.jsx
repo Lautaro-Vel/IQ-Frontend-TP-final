@@ -12,7 +12,6 @@ const Detail = ({ userProfile, userQuotes }) => {
 
     return (
         <div className="divContainerDetails">
-            {/* Información del usuario */}
             <div className="userProfileSection">
                 <h2 className="userName">
                     {userProfile.name} {userProfile.userSurname}

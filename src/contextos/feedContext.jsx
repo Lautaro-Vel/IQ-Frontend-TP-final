@@ -3,7 +3,6 @@ import { quotesService } from '../services/quotesService'
 
 export const feedContext = createContext({
     quotes: [],
-
     handleDeleteQuote: (quoteId) => {},
     addNewQuote: (quote, author) => {}
 })
@@ -24,7 +23,6 @@ const FeedContextProvider = function ({children}) {
                 }
             } 
             catch (error) {
-                console.error('Error al obtener quotes:', error)
                 setError({ status: 500, message: error.message || 'Error de conexión' })
             } 
             finally {
@@ -46,7 +44,6 @@ const FeedContextProvider = function ({children}) {
             }
         } 
         catch (error) {
-            console.error('Error en handleDeleteQuote:', error)
             setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         }
@@ -64,15 +61,13 @@ const FeedContextProvider = function ({children}) {
             }
         } 
         catch (error) {
-            console.error('Error en addNewQuote:', error)
             setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         }
         finally {
             setLoading(false)
         }
-    } 
-
+    }
     return (
         <feedContext.Provider
             value={{
