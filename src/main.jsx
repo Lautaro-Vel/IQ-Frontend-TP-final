@@ -9,11 +9,9 @@ import MessageContextProvider from './contextos/messageContext.jsx'
 import UserContextProvider from './contextos/userContext.jsx'
 import { BrowserRouter } from 'react-router'
 
-console.log('main.jsx: Iniciando aplicación')
-
 // Usar app simplificada para debugging
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <AppSimplificado/>  
+    <App/>  
   </BrowserRouter>
 )

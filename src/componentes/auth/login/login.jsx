@@ -12,14 +12,9 @@ export default function Login() {
     const navigate = useNavigate()
     const handleSubmit = async (event) => {
         event.preventDefault()
-        console.log('Iniciando login con:', { gmail, password })
         const request = await loginUser({ gmail, password })
-        console.log('Resultado del login:', request)
         if (request) {
-            console.log('Login exitoso, redirigiendo a /')
             navigate('/')
-        } else {
-            console.log('Login falló, no se redirige')
         }
     }
     const goToRegister = () => {

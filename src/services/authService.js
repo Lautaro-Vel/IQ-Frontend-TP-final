@@ -41,13 +41,12 @@ export async function verifyEmail(token) {
     }
     return httpResponse
 }
-export async function login(credentials) {
+export async function login(user) {
     const userLogin = {
-        gmail: credentials.gmail,
-        password: credentials.password
+        gmail: user.gmail,
+        password: user.password
     }
     const loginUrl = `${ENVIRONMENT.URL_API}/auth/login`
-    
     const httpRequest = await fetch (
         loginUrl,
         {
@@ -67,5 +66,6 @@ export async function login(credentials) {
 
 export const authService = {
     register,
-    login
+    login,
+    verifyEmail
 }

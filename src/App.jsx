@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
+import VerifyEmailScreen from './screens/VerifyEmailScreen'
 import ProtectedRoute from './middleware/ProtectedRoute'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
+        <Route path="/verify-email/:token" element={<VerifyEmailScreen />} />
         <Route path="/" element={
             <ProtectedRoute>
               <HomeScreen />

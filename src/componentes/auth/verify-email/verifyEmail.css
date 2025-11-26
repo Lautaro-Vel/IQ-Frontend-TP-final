@@ -1,0 +1,83 @@
+.verifyEmailContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #061216;
+    color: #eff6e0;
+    padding: 20px;
+}
+
+.verifyEmailLoadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #061216;
+    color: #eff6e0;
+}
+
+.verifyEmailLoadingText {
+    margin-top: 20px;
+}
+
+.verifyEmailBox {
+    background-color: #001720;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    text-align: center;
+    width: 100%;
+}
+
+.verifyEmailIcon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.verifyEmailIcon.success {
+    color: #aec3b0;
+}
+
+.verifyEmailIcon.error {
+    color: #d32f2f;
+}
+
+.verifyEmailTitle {
+    margin-bottom: 20px;
+}
+
+.verifyEmailTitle.success {
+    color: #aec3b0;
+}
+
+.verifyEmailTitle.error {
+    color: #d32f2f;
+}
+
+.verifyEmailMessage {
+    margin-bottom: 30px;
+    color: #eff6e0;
+}
+
+.verifyEmailErrorMessage {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: #598392;
+}
+
+.verifyEmailButton {
+    background-color: #598392;
+    color: #eff6e0;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.verifyEmailButton:hover {
+    background-color: #4a7380;
+}

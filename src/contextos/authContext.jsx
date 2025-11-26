@@ -26,28 +26,20 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
     
     useEffect(() => {
-        console.log('AuthContext: Iniciando verificación de token guardado')
         try {
             const tokenGuardado = localStorage.getItem('token')
             const userGuardado = localStorage.getItem('user')
-            
-            console.log('AuthContext: Token guardado:', tokenGuardado)
-            console.log('AuthContext: User guardado:', userGuardado)
             
             if (tokenGuardado && userGuardado) {
                 const parsedUser = JSON.parse(userGuardado)
                 setToken(tokenGuardado)
                 setUser(parsedUser)
                 setIsLogueado(true)
-                console.log('AuthContext: Usuario restaurado desde localStorage:', parsedUser)
-            } else {
-                console.log('AuthContext: No hay usuario guardado, usuario no logueado')
             }
         } catch (error) {
-            console.error('AuthContext: Error al restaurar usuario desde localStorage:', error)
+            return false
         } finally {
             setIsLoading(false)
-            console.log('AuthContext: Carga inicial completada, isLoading = false')
         }
     }, [])
     const login = (dataUser, tokenUser) => {
@@ -71,16 +63,12 @@ const AuthProvider = ({ children }) => {
     const loginUser = async (credentials) => {
         setLoading(true)
         setError('')
-        console.log('AuthContext: Iniciando loginUser con credentials:', credentials)
         try {
             const response = await authService.login(credentials)
-            console.log('AuthContext: Respuesta del authService:', response)
             if (response.ok) {
-                console.log('AuthContext: Login exitoso, estableciendo usuario y token')
                 login(response.data.user, response.data.token)
                 return true
             } else {
-                console.log('AuthContext: Login falló con respuesta:', response)
                 setError({ status: response.status, message: response.message })
                 return false
             }
@@ -91,7 +79,6 @@ const AuthProvider = ({ children }) => {
             return false
         }
         finally {
-            console.log('AuthContext: Finalizando loginUser, loading = false')
             setLoading(false)
         }
     }
@@ -108,7 +95,6 @@ const AuthProvider = ({ children }) => {
             }
         } 
         catch (error) {
-            console.error('Error en registro:', error)
             setError({ status: 500, message: error.message || 'Error de conexión' })
             return false 
         }
