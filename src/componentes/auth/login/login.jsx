@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useState, useEffect } from 'react'
+import { useNavigate, useSearchParams } from 'react-router'
 import { useAuth } from '../../../contextos/authContext'
 import { authService } from '../../../services/authService'
 import ErrorMessage from '../../../utils/error/ErrorMessage'
@@ -8,8 +8,25 @@ import './login.css'
 export default function Login() {
     const [gmail, setGmail] = useState('')
     const [password, setPassword] = useState('')
+    const [statusMessage, setStatusMessage] = useState('')
+    const [isSuccess, setIsSuccess] = useState(false)
     const { loginUser, error, loading } = useAuth()
     const navigate = useNavigate()
+    const [searchParams] = useSearchParams()
+    
+    useEffect(() => {
+        const verified = searchParams.get('verified')
+        const errorParam = searchParams.get('error')
+        
+        if (verified === 'true') {
+            setStatusMessage('✅ Email verificado correctamente. Ya puedes iniciar sesión.')
+            setIsSuccess(true)
+        } else if (errorParam) {
+            setStatusMessage(`❌ Error: ${decodeURIComponent(errorParam)}`)
+            setIsSuccess(false)
+        }
+    }, [searchParams])
+    
     const handleSubmit = async (event) => {
         event.preventDefault()
         const request = await loginUser({ gmail, password })
@@ -31,6 +48,11 @@ export default function Login() {
         <div className="loginContainer">
             <div className="loginBox">
                 <h2 className="loginTitle">Iniciar Sesión</h2>
+                {statusMessage && (
+                    <div className={`statusMessage ${isSuccess ? 'success' : 'error'}`}>
+                        {statusMessage}
+                    </div>
+                )}
                 <form className="loginForm" onSubmit={handleSubmit}>
                     <div className="inputGroup">
                         <label>Email:</label>

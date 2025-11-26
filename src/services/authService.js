@@ -9,21 +9,37 @@ export async function register(userData) {
         gmail: userData.gmail,
         password: userData.password
     }
-    const httpRequest = await fetch (
-        `${URL_API_AUTH}/register`,
-        {
+    
+    const registerUrl = `${URL_API_AUTH}/register`
+    console.log('🔍 Intentando registrar en:', registerUrl)
+    console.log('📤 Datos enviados:', user)
+    
+    try {
+        const httpRequest = await fetch(registerUrl, {
             method: HTTP_METHODS.POST,
             headers: {
                 [HEADERS.CONTENT_TYPE]: CONTENT_TYPE_VALUES.JSON
             },
             body: JSON.stringify(user)
+        })
+        
+        console.log('📊 Status de respuesta:', httpRequest.status)
+        
+        if (!httpRequest.ok) {
+            console.error('❌ Error HTTP:', httpRequest.status, httpRequest.statusText)
         }
-    )
-    const httpResponse = await httpRequest.json()
-    if(!httpResponse.ok) {
-        throw new Error(httpResponse.message || 'Error en el registro')
+        
+        const httpResponse = await httpRequest.json()
+        console.log('📨 Respuesta recibida:', httpResponse)
+        
+        if(!httpResponse.ok) {
+            throw new Error(httpResponse.message || 'Error en el registro')
+        }
+        return httpResponse
+    } catch (error) {
+        console.error('🚨 Error en register:', error)
+        throw error
     }
-    return httpResponse
 }
 export async function verifyEmail(token) {
     const httpRequest = await fetch (
