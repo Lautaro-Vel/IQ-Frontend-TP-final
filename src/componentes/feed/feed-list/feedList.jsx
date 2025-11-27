@@ -14,7 +14,11 @@ export default function FeedList() {
                 quotes.map((quote) => (
                     <QuoteCard
                         key={quote._id}
-                        {...quote}
+                        author={quote.author}
+                        createdBy={quote.createdBy}
+                        _id={quote._id}
+                        quote={quote.quote}
+                        userName={quote.userName}
                     />
                 ))
             )}

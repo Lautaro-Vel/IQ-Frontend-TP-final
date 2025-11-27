@@ -1,10 +1,4 @@
-import './quoteCard.css'
-import React, { useContext } from 'react'
-import { feedContext } from '../../../contextos/feedContext'
-import { Link } from 'react-router'
-import { useAuth } from '../../../contextos/authContext'
-
-const QuoteCard = ({ author, createdBy, _id, quote}) => {
+const QuoteCard = ({ author, createdBy, _id, quote, userName }) => {
   const { user } = useAuth()
   const { handleDeleteQuote } = useContext(feedContext)
   const getDeleteButton = () => {
