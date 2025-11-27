@@ -41,10 +41,10 @@ const MessageCard = ({ _id, message, userName }) => {
         <div className={getMessageClass()}>
             {!getIsMyMessage() && (
                 <div className="messageAuthor">
-                    {userName ? userName : 'Usuario desconocido'}
+                    {typeof userName === 'string' && userName.trim() ? userName : 'Usuario desconocido'}
                 </div>
             )}
-            <div className="messageContent">{message}</div>
+            <div className="messageContent">{typeof message === 'string' && message.trim() ? message : '[Sin mensaje]'}</div>
             <div className="messageFooter">
                 {getDeleteButton()}
             </div>
