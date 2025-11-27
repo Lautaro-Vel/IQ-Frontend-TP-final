@@ -14,22 +14,22 @@ export default function AddNewQuoteForm() {
     }
 
     return (
-        <form className='formNewQuote' onSubmit={handleAddNewQuote}>
-            <div className='divContainerInputQuote divLabelForm'>
-                <label className='labelAddQuote' htmlFor="text">Añade una cita:</label>
+        <form className='formNewCita' onSubmit={handleAddNewQuote}>
+            <div className='divLabelForm'>
+                <label className='labelAddCita' htmlFor="text">Añade una cita:</label>
             </div>
             <div className='divContaiterInputButton'>
                 <div className='divContainerInputs'>
-                    <input className='inputWriteQuote' type="text" name="quote"
+                    <input className='inputWriteCita' type="text" name="quote"
                         placeholder="escribe tu cita aquí"
                         required
                     />
-                    <input className='inputWriteQuote authorInput' type="text" name="author"
+                    <input className='inputWriteCita autorInput' type="text" name="author"
                         placeholder="pon su autor aquí"
                         required
                     />
                 </div>
-                <button className='buttonSubmitQuote' type="submit">
+                <button className='buttonSubmitCita' type="submit">
                     <i className="bi bi-arrow-right-circle"></i>
                 </button>
             </div>

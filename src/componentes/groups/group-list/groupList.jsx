@@ -8,8 +8,7 @@ export default function GroupList() {
     const {
         allGroups,
         myGroups,
-        getAllGroupsList,
-        getMyGroupsList,
+        getAllGroupsData,
         joinNewGroup,
         leaveGroupById,
         createNewGroup,
@@ -22,8 +21,7 @@ export default function GroupList() {
         maxMembers: 10
     })
     useEffect(() => {
-        getAllGroupsList()
-        getMyGroupsList()
+        getAllGroupsData()
     }, [])
     const handleJoinGroup = async (groupId) => {
         await joinNewGroup(groupId)

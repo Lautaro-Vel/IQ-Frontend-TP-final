@@ -138,6 +138,30 @@ const GroupContextProvider = ({ children }) => {
             setLoading(false)
         }
     }
+    const getAllGroupsData = async () => {
+        setLoading(true)
+        setError('')
+        try {
+            const [allGroupsRes, myGroupsRes] = await Promise.all([
+                getAllGroups(),
+                getMyGroups()
+            ])
+            if (allGroupsRes.ok) {
+                setAllGroups(allGroupsRes.data.groups)
+            } else {
+                setError({ status: allGroupsRes.status, message: allGroupsRes.message })
+            }
+            if (myGroupsRes.ok) {
+                setMyGroups(myGroupsRes.data.groups)
+            } else {
+                setError({ status: myGroupsRes.status, message: myGroupsRes.message })
+            }
+        } catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
+        } finally {
+            setLoading(false)
+        }
+    }
     return (
         <groupContext.Provider 
             value={{
@@ -148,6 +172,7 @@ const GroupContextProvider = ({ children }) => {
                 error: error,
                 getAllGroupsList: getAllGroupsList,
                 getMyGroupsList: getMyGroupsList,
+                getAllGroupsData: getAllGroupsData,
                 getGroup: getGroup,
                 createNewGroup: createNewGroup,
                 joinNewGroup: joinNewGroup,
