@@ -28,6 +28,7 @@ const GroupContextProvider = ({ children }) => {
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {
@@ -46,6 +47,7 @@ const GroupContextProvider = ({ children }) => {
             }
         } 
         catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' })
             return false
         } 
         finally {

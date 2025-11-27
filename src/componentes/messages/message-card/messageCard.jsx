@@ -9,11 +9,10 @@ const MessageCard = ({ _id, content, createdBy}) => {
     const { deleteMessageById } = useContext(messageContext)
     const { groupId } = useParams()
     const getIsMyMessage = () => {
-        if (user._id === createdBy._id) {
-            return true
-        } else {
+        if (!user || !user._id || !createdBy || !createdBy._id) {
             return false
         }
+        return user._id === createdBy._id
     }
     const getMessageClass = () => {
         if (getIsMyMessage()) {
