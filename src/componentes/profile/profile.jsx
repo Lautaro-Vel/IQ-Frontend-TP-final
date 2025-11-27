@@ -43,7 +43,8 @@ export default function Profile() {
     if (loading) {
         return <LoadSpinner />;
     }
-    if (error) {
+    // Si hay error pero existe token en localStorage, no mostrar alerta
+    if (error && !(typeof error === 'object' && error.message && error.message.toLowerCase().includes('token') && localStorage.getItem('token'))) {
         return <ErrorMessage status={error.status} message={error.message} />;
     }
     if (!userProfile) {
@@ -148,7 +149,10 @@ export default function Profile() {
                             <div style={{fontSize: '1.2em', fontWeight: 'bold', marginBottom: '8px'}}>{userProfile.nationality}</div>
                         )}
                     </div>
-                    {updateError && <ErrorMessage status={updateError.status} message={updateError.message} />}
+                    {/* Si hay error pero existe token en localStorage, no mostrar alerta */}
+                    {updateError && !(typeof updateError === 'object' && updateError.message && updateError.message.toLowerCase().includes('token') && localStorage.getItem('token')) && (
+                        <ErrorMessage status={updateError.status} message={updateError.message} />
+                    )}
                     {actualizacion && <p className="exitoMessage">{actualizacion}</p>}
                     {isEditing && (
                         <div className="buttonGroup">

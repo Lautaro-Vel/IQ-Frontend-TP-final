@@ -54,9 +54,10 @@ export default function Login() {
                             disabled={loading}
                         />
                     </div>
-                    {
-                        error && <ErrorMessage status={error.status} message={error.message} />
-                    }
+                    {/* Si hay error pero existe token en localStorage, no mostrar alerta */}
+                    {error && !(typeof error === 'object' && error.message && error.message.toLowerCase().includes('token') && localStorage.getItem('token')) && (
+                        <ErrorMessage status={error.status} message={error.message} />
+                    )}
                     <button 
                         type="submit" 
                         className="loginButton"

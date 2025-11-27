@@ -9,7 +9,8 @@ export default function GroupsScreen() {
     if (loading) {
         return <LoadSpinner />
     }
-    if (error) {
+    // Si hay error pero existe token en localStorage, no mostrar alerta
+    if (error && !(typeof error === 'object' && error.message && error.message.toLowerCase().includes('token') && localStorage.getItem('token'))) {
         return <ErrorMessage title="Error al cargar los grupos" message={typeof error === 'object' ? error.message : error} status={error && typeof error === 'object' ? error.status : undefined} />
     }
     return <GroupList />
