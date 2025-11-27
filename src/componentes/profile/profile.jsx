@@ -55,6 +55,7 @@ export default function Profile() {
         );
     }
 
+    // Renderizar nombre y gmail correctamente, sin estilos en línea
     return (
         <div className="profileContainer">
             <div className="profileHeader">
@@ -79,12 +80,12 @@ export default function Profile() {
                             <input
                                 type="text"
                                 name="name"
-                                value={userProfile.name}
+                                value={userProfile.userName || userProfile.name || ''}
                                 onChange={handleInputChange}
                                 required
                             />
                         ) : (
-                            <div style={{fontSize: '1.2em', fontWeight: 'bold', marginBottom: '8px'}}>{userProfile.name}</div>
+                            <div className="profileField">{userProfile.userName || userProfile.name || ''}</div>
                         )}
                     </div>
                     <div className="inputGroup">
@@ -93,17 +94,17 @@ export default function Profile() {
                             <input
                                 type="text"
                                 name="userSurname"
-                                value={userProfile.userSurname}
+                                value={userProfile.userSurname || ''}
                                 onChange={handleInputChange}
                                 required
                             />
                         ) : (
-                            <div style={{fontSize: '1.2em', fontWeight: 'bold', marginBottom: '8px'}}>{userProfile.userSurname}</div>
+                            <div className="profileField">{userProfile.userSurname || ''}</div>
                         )}
                     </div>
                     <div className="inputGroup">
                         <label>Email:</label>
-                        <div style={{fontSize: '1.2em', fontWeight: 'bold', marginBottom: '8px'}}>{userProfile.gmail}</div>
+                        <div className="profileField">{userProfile.mail || userProfile.gmail || ''}</div>
                     </div>
                     <div className="inputGroup">
                         <label>Edad:</label>
@@ -111,14 +112,14 @@ export default function Profile() {
                             <input
                                 type="number"
                                 name="age"
-                                value={userProfile.age}
+                                value={userProfile.age || ''}
                                 onChange={handleInputChange}
                                 min="1"
                                 max="120"
                                 required
                             />
                         ) : (
-                            <div style={{fontSize: '1.2em', fontWeight: 'bold', marginBottom: '8px'}}>{userProfile.age}</div>
+                            <div className="profileField">{userProfile.age || ''}</div>
                         )}
                     </div>
                     <div className="inputGroup">
@@ -127,12 +128,12 @@ export default function Profile() {
                             <input
                                 type="text"
                                 name="profession"
-                                value={userProfile.profession}
+                                value={userProfile.profession || ''}
                                 onChange={handleInputChange}
                                 required
                             />
                         ) : (
-                            <div style={{fontSize: '1.2em', fontWeight: 'bold', marginBottom: '8px'}}>{userProfile.profession}</div>
+                            <div className="profileField">{userProfile.profession || ''}</div>
                         )}
                     </div>
                     <div className="inputGroup">
@@ -141,12 +142,12 @@ export default function Profile() {
                             <input
                                 type="text"
                                 name="nationality"
-                                value={userProfile.nationality}
+                                value={userProfile.nationality || ''}
                                 onChange={handleInputChange}
                                 required
                             />
                         ) : (
-                            <div style={{fontSize: '1.2em', fontWeight: 'bold', marginBottom: '8px'}}>{userProfile.nationality}</div>
+                            <div className="profileField">{userProfile.nationality || ''}</div>
                         )}
                     </div>
                     {/* Si hay error pero existe token en localStorage, no mostrar alerta */}

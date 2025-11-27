@@ -17,7 +17,7 @@ const GroupContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const getAllGroupsList = async () => {
-        setLoading(true)
+        setLoading(false)
         setError('')
         try {
             const response = await getAllGroups()
@@ -38,13 +38,10 @@ const GroupContextProvider = ({ children }) => {
                 setError('')
             }
             return false
-        } 
-        finally {
-            setLoading(false)
         }
     }
     const getMyGroupsList = async () => {
-        setLoading(true)
+        setLoading(false)
         setError('')
         try {
             const response = await getMyGroups()
@@ -63,7 +60,7 @@ const GroupContextProvider = ({ children }) => {
         }
     }
     const getGroup = async (groupId) => {
-        setLoading(true)
+        setLoading(false)
         setError('')
         try {
             const response = await getGroupById(groupId)
@@ -83,7 +80,7 @@ const GroupContextProvider = ({ children }) => {
         }
     }
     const createNewGroup = async (groupData) => {
-        setLoading(true)
+        setLoading(false)
         setError('')
         try {
             const response = await createGroup({
@@ -107,7 +104,7 @@ const GroupContextProvider = ({ children }) => {
         }
     }
     const joinNewGroup = async (groupId) => {
-        setLoading(true)
+        setLoading(false)
         setError('')
         try {
             const response = await joinGroup(groupId)
@@ -128,7 +125,7 @@ const GroupContextProvider = ({ children }) => {
         }
     }
     const leaveGroupById = async (groupId) => {
-        setLoading(true)
+        setLoading(false)
         setError('')
         try {
             const response = await leaveGroup(groupId)
@@ -149,7 +146,7 @@ const GroupContextProvider = ({ children }) => {
         }
     }
     const getAllGroupsData = async () => {
-        setLoading(true)
+        setLoading(false)
         setError('')
         try {
             const [allGroupsRes, myGroupsRes] = await Promise.all([
