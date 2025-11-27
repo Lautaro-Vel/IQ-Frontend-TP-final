@@ -1,10 +1,10 @@
 import { HTTP_METHODS, HEADERS, CONTENT_TYPE_VALUES } from '../dictionary/httpDictionary.js'
 import ENVIRONMENT from '../config/environmentConfig.js'
 
-const URL_API_GROUPS = ENVIRONMENT.URL_API + "/groups"
+const URL_API_GROUPS = ENVIRONMENT.URL_API + "/api/groups"
 export async function getAllGroups() {
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/groups/all`,
+        `${URL_API_GROUPS}/all`,
         {
             method: HTTP_METHODS.GET,
             headers: {
@@ -20,7 +20,7 @@ export async function getAllGroups() {
 }
 export async function getGroupById(groupId) {
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/groups/${groupId}`,
+        `${URL_API_GROUPS}/${groupId}`,
         {
             method: HTTP_METHODS.GET,
             headers: {
@@ -37,7 +37,7 @@ export async function getGroupById(groupId) {
 export async function getMyGroups() {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/groups/my/groups`,
+        `${URL_API_GROUPS}/my/groups`,
         {
             method: HTTP_METHODS.GET,
             headers: {
@@ -55,7 +55,7 @@ export async function getMyGroups() {
 export async function createGroup(groupData) {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/groups/create`,
+        `${URL_API_GROUPS}/create`,
         {
             method: HTTP_METHODS.POST,
             headers: {
@@ -74,7 +74,7 @@ export async function createGroup(groupData) {
 export async function joinGroup(groupId) {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/groups/join/${groupId}`,
+        `${URL_API_GROUPS}/join/${groupId}`,
         {
             method: HTTP_METHODS.POST,
             headers: {
@@ -92,7 +92,7 @@ export async function joinGroup(groupId) {
 export async function leaveGroup(groupId) {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/groups/leave/${groupId}`,
+        `${URL_API_GROUPS}/leave/${groupId}`,
         {
             method: HTTP_METHODS.DELETE,
             headers: {

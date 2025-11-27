@@ -1,10 +1,10 @@
 import { HTTP_METHODS, HEADERS, CONTENT_TYPE_VALUES } from '../dictionary/httpDictionary.js'
 import ENVIRONMENT from '../config/environmentConfig.js'
 
-const URL_API_QUOTES = ENVIRONMENT.URL_API + "/quotes"
+const URL_API_QUOTES = ENVIRONMENT.URL_API + "/api/quotes"
 
 export async function getAllQuotes() {
-    const quotesUrl = `${ENVIRONMENT.URL_API}/api/quotes/home-quotes`;
+    const quotesUrl = `${URL_API_QUOTES}/home-quotes`;
     const token = localStorage.getItem('token');
     if (!token || token === 'null') {
         // Si no hay token, no se hace la petición y se lanza error para redirigir al login
@@ -29,7 +29,7 @@ export async function getAllQuotes() {
 export async function getMyQuotes() {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/quotes/my-quotes`,
+        `${URL_API_QUOTES}/my-quotes`,
         {
             method: HTTP_METHODS.GET,
             headers: {
@@ -48,7 +48,7 @@ export async function createQuote(quoteData) {
     const token = localStorage.getItem('token')
     
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/quotes/home-quotes`,
+        `${URL_API_QUOTES}/home-quotes`,
         {
             method: HTTP_METHODS.POST,
             headers: {
@@ -69,7 +69,7 @@ export async function deleteQuote(quoteId) {
     const token = localStorage.getItem('token')
     
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/quotes/my-quotes/${quoteId}`,
+        `${URL_API_QUOTES}/my-quotes/${quoteId}`,
         {
             method: HTTP_METHODS.DELETE,
             headers: {
@@ -89,7 +89,7 @@ export async function getQuotesByUser(userId) {
     const token = localStorage.getItem('token')
     
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/quotes/user-quotes/${userId}`,
+        `${URL_API_QUOTES}/user-quotes/${userId}`,
         {
             method: HTTP_METHODS.GET,
             headers: {

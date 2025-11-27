@@ -1,11 +1,11 @@
 import { HTTP_METHODS, HEADERS, CONTENT_TYPE_VALUES } from '../dictionary/httpDictionary.js'
 import ENVIRONMENT from '../config/environmentConfig.js'
 
-const URL_API_USERS = ENVIRONMENT.URL_API + "/user"
+const URL_API_USERS = ENVIRONMENT.URL_API + "/api/user"
 export async function getUserProfile() {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/user/profile`,
+        `${URL_API_USERS}/profile`,
         {
             method: HTTP_METHODS.GET,
             headers: {
@@ -23,7 +23,7 @@ export async function getUserProfile() {
 export async function updateUserProfile(userData) {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${ENVIRONMENT.URL_API}/api/user/profile`,
+        `${URL_API_USERS}/profile`,
         {
             method: HTTP_METHODS.PATCH,
             headers: {
