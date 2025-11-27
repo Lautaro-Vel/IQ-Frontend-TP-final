@@ -27,21 +27,37 @@ const AuthProvider = ({ children }) => {
     
     useEffect(() => {
         try {
-            const tokenGuardado = localStorage.getItem('token')
-            const userGuardado = localStorage.getItem('user')
-            
-            if (tokenGuardado && userGuardado) {
-                const parsedUser = JSON.parse(userGuardado)
-                setToken(tokenGuardado)
-                setUser(parsedUser)
-                setIsLogueado(true)
+            const tokenGuardado = localStorage.getItem('token');
+            const userGuardado = localStorage.getItem('user');
+            let parsedUser = null;
+            if (userGuardado) {
+                try {
+                    parsedUser = JSON.parse(userGuardado);
+                } catch (e) {
+                    parsedUser = null;
+                }
+            }
+            if (tokenGuardado && parsedUser) {
+                setToken(tokenGuardado);
+                setUser(parsedUser);
+                setIsLogueado(true);
+            } else {
+                setToken(null);
+                setUser(null);
+                setIsLogueado(false);
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
             }
         } catch (error) {
-            return false
+            setToken(null);
+            setUser(null);
+            setIsLogueado(false);
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
-    }, [])
+    }, []);
     const login = (dataUser, tokenUser) => {
         setUser(dataUser)
         setToken(tokenUser)
