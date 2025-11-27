@@ -55,7 +55,7 @@ export async function verifyEmail(token) {
 }
 export async function login(user) {
     const userLogin = {
-        gmail: user.gmail,
+        mail: user.gmail,
         password: user.password
     }
     const loginUrl = `${ENVIRONMENT.URL_API}/api/auth/login`
