@@ -9,10 +9,6 @@ import GroupContextProvider from './contextos/readingGroupContext.jsx';
 import { UserContextProvider } from './contextos/userContext.jsx';
 import MessageContextProvider from './contextos/messageContext.jsx';
 
-window.addEventListener('beforeunload', () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
-});
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
