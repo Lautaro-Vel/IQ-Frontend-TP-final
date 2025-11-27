@@ -5,8 +5,8 @@ const URL_API_AUTH = ENVIRONMENT.URL_API + "/auth"
 
 export async function register(userData) {
     const user = {
-        name: userData.name,
-        gmail: userData.gmail,
+        userName: userData.name,
+        mail: userData.gmail,
         password: userData.password
     }
     
