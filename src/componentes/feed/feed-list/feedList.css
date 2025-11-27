@@ -21,6 +21,7 @@
     width: 100%;
     gap: var(--gap-large);
     padding: 0 var(--gap-small);
+    color: var(--letter-color-white);
 }
 
 /* Responsive adjustments */
