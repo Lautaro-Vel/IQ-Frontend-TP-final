@@ -1,26 +1,27 @@
 
 .divQuote {
-    background-color: #222a36;
-    border: 2px solid #3a4a6b;
+    background-color: #23283b;
+    border: 2px solid #7ab7ff;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     padding: 24px 20px;
     margin: 18px auto;
     max-width: 600px;
     width: 100%;
-    color: #f5f5f5;
+    color: #eaf6ff;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    align-items: stretch;
 }
 
 .userDivQuote {
-    background-color: #1a2230;
-    border: 2px solid #5b7bd5;
+    background-color: #23283b;
+    border: 2px solid #7ab7ff;
 }
 
 .paragraphUserQuote {
-    color: #f5f5f5;
+    color: #eaf6ff;
     font-size: 1.15rem;
     font-family: var(--letter-font-family-2, Arial);
     letter-spacing: 1px;
@@ -30,7 +31,7 @@
 }
 
 .userNameQuote {
-    color: #f5f5f5;
+    color: #eaf6ff;
     font-size: 1.25rem;
     font-family: var(--letter-font-family-2, Arial);
     font-weight: bold;
@@ -39,7 +40,7 @@
 }
 
 .authorQuote {
-    color: #5b7bd5;
+    color: #7ab7ff;
     font-size: 1rem;
     font-family: var(--letter-font-family-2, Arial);
     letter-spacing: 1px;

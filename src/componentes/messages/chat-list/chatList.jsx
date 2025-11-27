@@ -5,6 +5,7 @@ import { messageContext } from "../../../contextos/messageContext"
 
 export default function ChatList() {
     const { messages } = useContext(messageContext)
+    const safeMessages = Array.isArray(messages) ? messages : []
     const messagesEndRef = useRef(null)
     const scrollToBottom = () => {
         if (messagesEndRef.current) {
@@ -17,14 +18,14 @@ export default function ChatList() {
 
     return (
         <div className='divContainerChatMessages'>
-            {messages.length === 0 && (
+            {safeMessages.length === 0 && (
                 <div className="noMessagesContainer">
                     <p className="noMessagesText">No hay mensajes todavia, escribe uno!</p>
                 </div>
             )}
-            {messages.length > 0 && (
+            {safeMessages.length > 0 && (
                 <div className="messagesList">
-                    {messages.map((message) => {
+                    {safeMessages.map((message) => {
                         return (
                             <MessageCard
                                 key={message._id}

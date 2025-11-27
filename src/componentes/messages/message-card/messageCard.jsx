@@ -9,7 +9,7 @@ const MessageCard = ({ _id, content, createdBy}) => {
     const { deleteMessageById } = useContext(messageContext)
     const { groupId } = useParams()
     const getIsMyMessage = () => {
-        if (!user || !user._id || !createdBy || !createdBy._id) {
+        if (!user || !user._id || !createdBy || typeof createdBy !== 'object' || !createdBy._id) {
             return false
         }
         return user._id === createdBy._id
@@ -39,7 +39,9 @@ const MessageCard = ({ _id, content, createdBy}) => {
     return (
         <div className={getMessageClass()}>
             {!getIsMyMessage() && (
-                <div className="messageAuthor">{(createdBy && createdBy.name) ? createdBy.name : 'Usuario desconocido'}</div>
+                <div className="messageAuthor">
+                    {(createdBy && typeof createdBy === 'object' && createdBy.name) ? createdBy.name : 'Usuario desconocido'}
+                </div>
             )}
             <div className="messageContent">{content}</div>
             <div className="messageFooter">
