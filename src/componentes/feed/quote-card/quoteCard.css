@@ -1,3 +1,7 @@
+/* Fuerza color blanco en citas propias */
+.userDivQuote, .userDivQuote * {
+    color: var(--letter-color-white) !important;
+}
 
 
 .divQuote {
