@@ -4,7 +4,7 @@ import { useAuth } from '../../../contextos/authContext'
 import { messageContext } from '../../../contextos/messageContext'
 import { useParams } from 'react-router-dom'
 
-const MessageCard = ({ _id, content, userName }) => {
+const MessageCard = ({ _id, message, userName }) => {
     const { user } = useAuth()
     const { deleteMessageById } = useContext(messageContext)
     const { groupId } = useParams()
@@ -44,7 +44,7 @@ const MessageCard = ({ _id, content, userName }) => {
                     {userName ? userName : 'Usuario desconocido'}
                 </div>
             )}
-            <div className="messageContent">{content}</div>
+            <div className="messageContent">{message}</div>
             <div className="messageFooter">
                 {getDeleteButton()}
             </div>

@@ -85,10 +85,7 @@
     }
 }
 
-.userDivCita {
-    background-color: var(--background-color-dark--2);
-    border: 2px solid var(--blue-gamma-light);
-}
+
 
 .divContainerLinkDetails {
     display: flex;
@@ -100,13 +97,7 @@
     text-decoration: none;
 }
 
-.divButtonsQuote {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: var(--gap-small);
-}
+
 
 .buttonLikes {
     background-color: transparent;
@@ -151,47 +142,3 @@
     font-size: var(--font-size-body);
 }
 
-/* Responsive adjustments */
-@media (max-width: 767px) {
-    .divCita {
-        margin: var(--gap-medium) var(--gap-small);
-        padding: var(--container-padding);
-    }
-    
-    .paragraphUserQuote {
-        padding: 0 var(--gap-medium);
-        padding-bottom: var(--gap-medium);
-        text-align: left;
-    }
-    
-    .authorQuote {
-        padding-right: var(--container-padding);
-        padding-bottom: var(--gap-small);
-    }
-}
-
-@media (max-width: 479px) {
-    .divCita {
-        margin: var(--gap-small);
-        padding: var(--container-padding);
-    }
-    
-    .userNameQuote {
-        padding-bottom: var(--gap-small);
-    }
-    
-    .paragraphUserQuote {
-        padding: 0 var(--gap-small);
-        padding-bottom: var(--gap-medium);
-        text-align: left;
-    }
-    
-    .authorQuote {
-        padding-right: calc(var(--container-padding) - 5px);
-        padding-bottom: var(--gap-medium);
-    }
-    
-    .spanLikes {
-        padding-left: var(--gap-small);
-    }
-}
