@@ -1,3 +1,5 @@
+import React, { useContext } from 'react'
+import { feedContext } from '../../../contextos/feedContext'
 import { useAuth } from '../../../contextos/authContext'
 const QuoteCard = ({ author, createdBy, _id, quote, userName }) => {
   const { user } = useAuth()
