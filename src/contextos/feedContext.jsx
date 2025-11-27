@@ -18,12 +18,22 @@ const FeedContextProvider = function ({children}) {
                 const response = await quotesService.getAllQuotes()
                 if (response.ok) {
                     setQuotes(response.data.quotes)
+                    // Si no hay citas, no es error, solo UI vacía
+                } else if (response.status === 404 || (response.data && response.data.length === 0)) {
+                    setQuotes([])
+                    setError('')
                 } else {
                     setError({ status: response.status, message: response.message })
                 }
             } 
             catch (error) {
-                setError({ status: 500, message: error.message || 'Error de conexión' })
+                // Si el error es por token, sí mostrarlo
+                if (error.message && error.message.toLowerCase().includes('token')) {
+                    setError({ status: 401, message: error.message })
+                } else {
+                    // Si es por ausencia de citas, no mostrar error
+                    setError('')
+                }
             } 
             finally {
                 setLoading(false)
