@@ -81,7 +81,7 @@ export default function GroupList() {
                     {getButtonText()}
                 </button>
             </div>
-            {error && <ErrorMessage message={error} />}
+            {error && <ErrorMessage message={typeof error === 'object' ? error.message : error} status={error && typeof error === 'object' ? error.status : undefined} />}
             {mostrarCreateForm && (
                 <form className="create-group-form" onSubmit={handleCreateGroup}>
                     <h3>Crear Nuevo Grupo</h3>

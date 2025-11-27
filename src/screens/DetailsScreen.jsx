@@ -10,7 +10,7 @@ export default function DetailsScreen() {
         return <LoadSpinner />
     }
     if (error) {
-        return <ErrorMessage title="Error al cargar los detalles" message={error} />
+        return <ErrorMessage title="Error al cargar los detalles" message={typeof error === 'object' ? error.message : error} status={error && typeof error === 'object' ? error.status : undefined} />
     }
     return <DetailList />
 }

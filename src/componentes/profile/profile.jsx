@@ -85,14 +85,17 @@ export default function Profile() {
                 <form onSubmit={handleSubmit} className="profileForm">
                     <div className="inputGroup">
                         <label>Nombre:</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={userProfile.name}
-                            onChange={handleInputChange}
-                            disabled={!isEditing}
-                            required
-                        />
+                        {isEditing ? (
+                            <input
+                                type="text"
+                                name="name"
+                                value={userProfile.name}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        ) : (
+                            <div style={{fontSize: '1.2em', fontWeight: 'bold', marginBottom: '8px'}}>{userProfile.name}</div>
+                        )}
                     </div>
                     <div className="inputGroup">
                         <label>Apellido:</label>

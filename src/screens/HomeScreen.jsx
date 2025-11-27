@@ -10,7 +10,7 @@ export default function HomeScreen() {
         return <LoadSpinner />
     }
     if (error) {
-        return <ErrorMessage title="Error al cargar las citas" message={error.message} status={error.status} />
+        return <ErrorMessage title="Error al cargar las citas" message={typeof error === 'object' ? error.message : error} status={error && typeof error === 'object' ? error.status : undefined} />
     }
     return <FeedContainer />
 }

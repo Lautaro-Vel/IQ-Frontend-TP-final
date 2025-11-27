@@ -10,7 +10,7 @@ export default function MessagesScreen() {
         return <LoadSpinner />
     }
     if (error) {
-        return <ErrorMessage title="Error al cargar los mensajes" message={error} />
+        return <ErrorMessage title="Error al cargar los mensajes" message={typeof error === 'object' ? error.message : error} status={error && typeof error === 'object' ? error.status : undefined} />
     }
     return <ChatContainer />
 }

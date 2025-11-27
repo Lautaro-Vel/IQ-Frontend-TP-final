@@ -10,7 +10,7 @@ export default function GroupsScreen() {
         return <LoadSpinner />
     }
     if (error) {
-        return <ErrorMessage title="Error al cargar los grupos" message={error} />
+        return <ErrorMessage title="Error al cargar los grupos" message={typeof error === 'object' ? error.message : error} status={error && typeof error === 'object' ? error.status : undefined} />
     }
     return <GroupList />
 }
