@@ -28,6 +28,7 @@
     padding: 0 12px 18px 12px;
     text-align: justify;
     line-height: 1.5;
+    background: transparent;
 }
 
 .userNameQuote {
@@ -37,6 +38,7 @@
     font-weight: bold;
     letter-spacing: 1px;
     margin-bottom: 8px;
+    background: transparent;
 }
 
 .authorQuote {
@@ -46,6 +48,7 @@
     letter-spacing: 1px;
     text-align: right;
     margin-bottom: 6px;
+    background: transparent;
 }
 
 .divButtonsQuote {

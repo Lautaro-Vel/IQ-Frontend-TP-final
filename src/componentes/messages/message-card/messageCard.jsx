@@ -39,10 +39,6 @@ const MessageCard = ({ _id, message, userName }) => {
 
     return (
         <div className={getMessageClass()}>
-            {/* Bloque de depuración visual */}
-            <pre style={{fontSize: '0.8em', background: '#222', color: '#7ab7ff', padding: '6px', borderRadius: '6px', marginBottom: '6px'}}>
-                {JSON.stringify({ _id, message, userName }, null, 2)}
-            </pre>
             {!getIsMyMessage() && (
                 <div className="messageAuthor">
                     {typeof userName === 'string' && userName.trim() ? userName : 'Usuario desconocido'}
