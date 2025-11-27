@@ -81,20 +81,33 @@ const AuthProvider = ({ children }) => {
         setError('')
         try {
             const response = await authService.login(credentials)
+            // Soporte para diferentes formatos de respuesta
+            let token = null;
+            let user = null;
             if (response.ok) {
-                login(response.data.user, response.data.token)
-                return true
+                if (response.data && response.data.token && response.data.user) {
+                    token = response.data.token;
+                    user = response.data.user;
+                } else if (response.token && response.user) {
+                    token = response.token;
+                    user = response.user;
+                }
+                if (token && user) {
+                    login(user, token);
+                    return true;
+                } else {
+                    setError({ status: 500, message: 'Respuesta de login inválida: faltan datos de usuario o token.' });
+                    return false;
+                }
             } else {
-                setError({ status: response.status, message: response.message })
-                return false
+                setError({ status: response.status, message: response.message });
+                return false;
             }
-        } 
-        catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
-            return false
-        }
-        finally {
-            setLoading(false)
+        } catch (error) {
+            setError({ status: 500, message: error.message || 'Error de conexión' });
+            return false;
+        } finally {
+            setLoading(false);
         }
     }
     const registerUser = async (userData) => {
