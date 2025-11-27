@@ -23,12 +23,20 @@ const GroupContextProvider = ({ children }) => {
             const response = await getAllGroups()
             if (response.ok) {
                 setAllGroups(response.data.groups)
-            } else {
+                // Nunca setear error si ok:true, aunque la lista esté vacía
+            } else if (response.status && response.status >= 400 && response.message) {
                 setError({ status: response.status, message: response.message })
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            // Si el error es por token, sí mostrarlo
+            if (error && error.message && error.message.toLowerCase().includes('token')) {
+                setError({ status: 401, message: error.message })
+            } else if (error && error.message) {
+                setError({ status: 500, message: error.message })
+            } else {
+                setError('')
+            }
             return false
         } 
         finally {
@@ -150,12 +158,12 @@ const GroupContextProvider = ({ children }) => {
             ])
             if (allGroupsRes.ok) {
                 setAllGroups(allGroupsRes.data.groups)
-            } else {
+            } else if (allGroupsRes.status && allGroupsRes.status >= 400 && allGroupsRes.message) {
                 setError({ status: allGroupsRes.status, message: allGroupsRes.message })
             }
             if (myGroupsRes.ok) {
                 setMyGroups(myGroupsRes.data.groups)
-            } else {
+            } else if (myGroupsRes.status && myGroupsRes.status >= 400 && myGroupsRes.message) {
                 setError({ status: myGroupsRes.status, message: myGroupsRes.message })
             }
         } catch (error) {

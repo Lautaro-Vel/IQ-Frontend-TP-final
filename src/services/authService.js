@@ -58,7 +58,7 @@ export async function login(user) {
         gmail: user.gmail,
         password: user.password
     }
-    const loginUrl = `${ENVIRONMENT.URL_API}/auth/login`
+    const loginUrl = `${ENVIRONMENT.URL_API}/api/auth/login`
     const httpRequest = await fetch (
         loginUrl,
         {

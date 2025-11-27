@@ -7,6 +7,9 @@ import ErrorMessage from '../../utils/error/ErrorMessage'
 import './profile.css'
 
 export default function Profile() {
+        const goHome = () => {
+            navigate('/');
+        }
     const {userProfile, loading, error, updateUserProfile, updateUserTemporal} = useContext(UserContext)
     const [isEditing, setIsEditing] = useState(false)
     const [updateError, setUpdateError] = useState('')

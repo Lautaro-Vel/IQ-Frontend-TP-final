@@ -5,7 +5,7 @@ const URL_API_USERS = ENVIRONMENT.URL_API + "/user"
 export async function getUserProfile() {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${URL_API_USERS}/profile`,
+        `${ENVIRONMENT.URL_API}/api/user/profile`,
         {
             method: HTTP_METHODS.GET,
             headers: {
@@ -23,7 +23,7 @@ export async function getUserProfile() {
 export async function updateUserProfile(userData) {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${URL_API_USERS}/profile`,
+        `${ENVIRONMENT.URL_API}/api/user/profile`,
         {
             method: HTTP_METHODS.PATCH,
             headers: {

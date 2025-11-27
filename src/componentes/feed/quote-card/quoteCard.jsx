@@ -8,7 +8,7 @@ const QuoteCard = ({ author, createdBy, _id, quote}) => {
   const { user } = useAuth()
   const { handleDeleteQuote } = useContext(feedContext)
   const getDeleteButton = () => {
-    if (user._id === createdBy._id) {
+    if (user && createdBy && user._id && createdBy._id && user._id === createdBy._id) {
       return (
         <button className='deleteButtonQuote' onClick={() => handleDeleteQuote(_id)}>
           <i className="bi bi-trash"></i>
@@ -19,7 +19,7 @@ const QuoteCard = ({ author, createdBy, _id, quote}) => {
     }
   }
   const getUserCardClass = () => {
-    if (user._id === createdBy._id) {
+    if (user && createdBy && user._id && createdBy._id && user._id === createdBy._id) {
       return 'divQuote userDivQuote'
     } else {
       return 'divQuote'
@@ -28,9 +28,13 @@ const QuoteCard = ({ author, createdBy, _id, quote}) => {
   return (
     <div className={getUserCardClass()}>
       <div className='divContainerLinkDetails'>
-        <Link className='linkUserNameQuote' to={`/user/${createdBy?._id}`}>
-          <h3 className='userNameQuote'>{createdBy?.name}</h3>
-        </Link>
+        {createdBy && createdBy._id ? (
+          <Link className='linkUserNameQuote' to={`/user/${createdBy._id}`}>
+            <h3 className='userNameQuote'>{createdBy.name}</h3>
+          </Link>
+        ) : (
+          <h3 className='userNameQuote'>Usuario desconocido</h3>
+        )}
       </div>
       <p className='paragraphUserQuote'>"{quote}"</p>
       <p className='authorQuote'><i>- {author}</i></p>
