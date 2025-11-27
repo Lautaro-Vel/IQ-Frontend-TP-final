@@ -1,16 +1,16 @@
 .userDivQuote {
-    color: var(--letter-color-white);
+    color: #eff6e0;
 }
 .divQuote {
     background-color: #23283b;
-    border: 2px solid var(--blue-gamma-light);
+    border: 2px solid #aec3b0;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     padding: 24px 20px;
     margin: 18px auto;
     max-width: 600px;
     width: 100%;
-    color: var(--letter-color-white);
+    color: #eff6e0;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -19,7 +19,7 @@
 
 
 .paragraphUserQuote {
-    color: var(--letter-color-white);
+    color: #eff6e0;
     font-size: 1.15rem;
     font-family: Arial, sans-serif;
     letter-spacing: 1px;
@@ -31,7 +31,7 @@
 
 
 .userNameQuote {
-    color: var(--letter-color-white);
+    color: #eff6e0;
     font-size: 1.25rem;
     font-family: Arial, sans-serif;
     font-weight: bold;
@@ -42,7 +42,7 @@
 
 
 .authorQuote {
-    color: var(--letter-color-white);
+    color: #eff6e0;
     font-size: 1rem;
     font-family: Arial, sans-serif;
     letter-spacing: 1px;
