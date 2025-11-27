@@ -1,9 +1,6 @@
-/* Fuerza color blanco en citas propias */
-.userDivQuote, .userDivQuote * {
-    color: var(--letter-color-white) !important;
+.userDivQuote {
+    color: var(--letter-color-white);
 }
-
-
 .divQuote {
     background-color: #23283b;
     border: 2px solid var(--blue-gamma-light);
@@ -13,7 +10,7 @@
     margin: 18px auto;
     max-width: 600px;
     width: 100%;
-    color: var(--letter-color-white) !important;
+    color: var(--letter-color-white);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -22,7 +19,7 @@
 
 
 .paragraphUserQuote {
-    color: var(--letter-color-white) !important;
+    color: var(--letter-color-white);
     font-size: 1.15rem;
     font-family: Arial, sans-serif;
     letter-spacing: 1px;
@@ -34,7 +31,7 @@
 
 
 .userNameQuote {
-    color: var(--letter-color-white) !important;
+    color: var(--letter-color-white);
     font-size: 1.25rem;
     font-family: Arial, sans-serif;
     font-weight: bold;
@@ -45,7 +42,7 @@
 
 
 .authorQuote {
-    color: var(--letter-color-white) !important;
+    color: var(--letter-color-white);
     font-size: 1rem;
     font-family: Arial, sans-serif;
     letter-spacing: 1px;
