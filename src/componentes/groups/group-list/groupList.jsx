@@ -154,34 +154,36 @@ export default function GroupList() {
                     {allGroups.length > 0 && (
                         <div className="groups-grid">
                             {allGroups.map((group) => (
-                                <div key={group._id} className="group-card">
-                                    <h3>{group.name}</h3>
-                                    <p>{group.description}</p>
-                                    <div className="group-stats">
-                                        <span>Miembros: {getMemberCount(group)}</span>
-                                        <span>Máximo: {group.maxMembers}</span>
-                                        <span>Creado por: {getCreatorName(group)}</span>
+                                group ? (
+                                    <div key={group._id} className="group-card">
+                                        <h3>{group.name || group.groupName || 'Sin nombre'}</h3>
+                                        <p>{group.description || 'Sin descripción'}</p>
+                                        <div className="group-stats">
+                                            <span>Miembros: {getMemberCount(group)}</span>
+                                            <span>Máximo: {group.maxMembers || 10}</span>
+                                            <span>Creado por: {getCreatorName(group)}</span>
+                                        </div>
+                                        <div className="group-actions">
+                                            {isUserInGroup(group._id) && (
+                                                <button 
+                                                    className="btn-leave"
+                                                    onClick={() => handleLeaveGroup(group._id)}
+                                                >
+                                                    Salir
+                                                </button>
+                                            )}
+                                            {!isUserInGroup(group._id) && (
+                                                <button 
+                                                    className="btn-join"
+                                                    onClick={() => handleJoinGroup(group._id)}
+                                                    disabled={(group.members?.length || 0) >= (group.maxMembers || 10)}
+                                                >
+                                                    {getJoinButtonText(group)}
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
-                                    <div className="group-actions">
-                                        {isUserInGroup(group._id) && (
-                                            <button 
-                                                className="btn-leave"
-                                                onClick={() => handleLeaveGroup(group._id)}
-                                            >
-                                                Salir
-                                            </button>
-                                        )}
-                                        {!isUserInGroup(group._id) && (
-                                            <button 
-                                                className="btn-join"
-                                                onClick={() => handleJoinGroup(group._id)}
-                                                disabled={(group.members?.length || 0) >= (group.maxMembers || 10)}
-                                            >
-                                                {getJoinButtonText(group)}
-                                            </button>
-                                        )}
-                                    </div>
-                                </div>
+                                ) : null
                             ))}
                         </div>
                     )}

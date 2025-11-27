@@ -25,15 +25,16 @@ const QuoteCard = ({ author, createdBy, _id, quote}) => {
       return 'divQuote'
     }
   }
+  const displayName = (createdBy && createdBy.name) ? createdBy.name : (userName ? userName : 'Usuario desconocido');
   return (
     <div className={getUserCardClass()}>
       <div className='divContainerLinkDetails'>
         {createdBy && createdBy._id ? (
           <Link className='linkUserNameQuote' to={`/user/${createdBy._id}`}>
-            <h3 className='userNameQuote'>{createdBy.name}</h3>
+            <h3 className='userNameQuote'>{displayName}</h3>
           </Link>
         ) : (
-          <h3 className='userNameQuote'>Usuario desconocido</h3>
+          <h3 className='userNameQuote'>{displayName}</h3>
         )}
       </div>
       <p className='paragraphUserQuote'>"{quote}"</p>
