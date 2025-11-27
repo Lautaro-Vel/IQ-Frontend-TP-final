@@ -14,7 +14,7 @@ function AppHeader() {
                 </div>
                 <div className="headerCenter">
                     <Link to={'/profile'} className='linkProfile'>
-                        <h2 className="welcomeFeedScreen">Bienvenido {user.name}</h2>
+                        <h2 className="welcomeFeedScreen">Bienvenido {(user && user.name) ? user.name : 'Usuario'}</h2>
                     </Link>
                 </div>
                 <div className="headerRight">

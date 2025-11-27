@@ -39,7 +39,7 @@ const MessageCard = ({ _id, content, createdBy}) => {
     return (
         <div className={getMessageClass()}>
             {!getIsMyMessage() && (
-                <div className="messageAuthor">{createdBy.name}</div>
+                <div className="messageAuthor">{(createdBy && createdBy.name) ? createdBy.name : 'Usuario desconocido'}</div>
             )}
             <div className="messageContent">{content}</div>
             <div className="messageFooter">

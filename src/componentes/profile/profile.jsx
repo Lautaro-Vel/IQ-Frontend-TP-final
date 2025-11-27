@@ -7,6 +7,12 @@ import ErrorMessage from '../../utils/error/ErrorMessage'
 import './profile.css'
 
 export default function Profile() {
+            const getButtonText = () => {
+                if (loading) {
+                    return 'Guardando...';
+                }
+                return 'Guardar';
+            }
         const goHome = () => {
             navigate('/');
         }

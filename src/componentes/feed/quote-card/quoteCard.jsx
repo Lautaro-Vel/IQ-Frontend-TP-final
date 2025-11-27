@@ -28,10 +28,10 @@ const QuoteCard = ({ author, createdBy, _id, quote, userName }) => {
       <div className='divContainerLinkDetails'>
         {createdBy && createdBy._id ? (
           <Link className='linkUserNameQuote' to={`/user/${createdBy._id}`}>
-            <h3 className='userNameQuote'>{displayName}</h3>
+            <h3 className='userNameQuote'>{(createdBy && createdBy.name) ? createdBy.name : (userName ? userName : 'Usuario desconocido')}</h3>
           </Link>
         ) : (
-          <h3 className='userNameQuote'>{displayName}</h3>
+          <h3 className='userNameQuote'>{(createdBy && createdBy.name) ? createdBy.name : (userName ? userName : 'Usuario desconocido')}</h3>
         )}
       </div>
       <p className='paragraphUserQuote'>"{quote}"</p>
