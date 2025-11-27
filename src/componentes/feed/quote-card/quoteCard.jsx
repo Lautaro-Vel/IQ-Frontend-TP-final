@@ -25,6 +25,10 @@ const QuoteCard = ({ author, createdBy, _id, quote, userName }) => {
   const displayName = (createdBy && createdBy.name) ? createdBy.name : (userName ? userName : 'Usuario desconocido');
   return (
     <div className={getUserCardClass()}>
+      {/* Bloque de depuración visual */}
+      <pre style={{fontSize: '0.8em', background: '#222', color: '#7ab7ff', padding: '6px', borderRadius: '6px', marginBottom: '6px'}}>
+        {JSON.stringify({ author, createdBy, _id, quote, userName }, null, 2)}
+      </pre>
       <div className='divContainerLinkDetails'>
         {createdBy && createdBy._id ? (
           <Link className='linkUserNameQuote' to={`/user/${createdBy._id}`}>
