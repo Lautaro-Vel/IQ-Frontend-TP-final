@@ -2,7 +2,7 @@ import './messageCard.css'
 import React, { useContext } from 'react'
 import { useAuth } from '../../../contextos/authContext'
 import { messageContext } from '../../../contextos/messageContext'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 
 const MessageCard = ({ _id, content, createdBy}) => {
     const { user } = useAuth()

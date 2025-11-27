@@ -1,6 +1,6 @@
 import './app.css'
 import React from 'react'
-import { Route, Routes, Navigate } from 'react-router'
+import { Route, Routes, Navigate } from 'react-router-dom'
 import DetailsScreen from './screens/DetailsScreen'
 import GroupsScreen from './screens/GroupsScreen'
 import MessagesScreen from './screens/MessagesScreen'

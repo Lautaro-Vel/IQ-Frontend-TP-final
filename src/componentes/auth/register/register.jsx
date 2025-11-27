@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../contextos/authContext'
 import ErrorMessage from '../../../utils/error/ErrorMessage'
 import './register.css'

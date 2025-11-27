@@ -1,3 +1,4 @@
+import { useAuth } from '../../../contextos/authContext'
 const QuoteCard = ({ author, createdBy, _id, quote, userName }) => {
   const { user } = useAuth()
   const { handleDeleteQuote } = useContext(feedContext)

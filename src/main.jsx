@@ -2,7 +2,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
-import { BrowserRouter } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from './contextos/authContext.jsx';
 import FeedContextProvider from './contextos/feedContext.jsx';
 import GroupContextProvider from './contextos/readingGroupContext.jsx';

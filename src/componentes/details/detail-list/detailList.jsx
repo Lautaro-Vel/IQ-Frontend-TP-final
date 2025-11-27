@@ -2,7 +2,7 @@ import './detailList.css'
 import React, {useContext} from "react";
 import Detail from "../detail/detail";
 import { detailsContext } from "../../../contextos/detailsContext";
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function DetailList() {
     const { userProfile, userQuotes } = useContext(detailsContext)

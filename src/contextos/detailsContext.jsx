@@ -1,5 +1,5 @@
 import React, {useState, useEffect, createContext} from "react"
-import { useParams } from "react-router"
+import { useParams } from "react-router-dom"
 import { userService } from "../services/userService"
 import { quotesService } from "../services/quotesService"
 

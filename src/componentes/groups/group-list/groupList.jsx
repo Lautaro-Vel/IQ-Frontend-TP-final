@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { groupContext } from '../../../contextos/readingGroupContext'
 import ErrorMessage from '../../../utils/error/ErrorMessage'
 import './groupList.css'
