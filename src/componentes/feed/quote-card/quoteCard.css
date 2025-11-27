@@ -100,37 +100,6 @@
     text-decoration: none;
 }
 
-.userNameQuote {
-    width: fit-content;
-    color: var(--letter-color-white);
-    font-size: var(--font-size-title);
-    font-family: var(--letter-font-family-2);
-    letter-spacing: 1px;
-    padding-bottom: var(--gap-medium);
-}
-
-.paragraphUserQuote {
-    color: var(--letter-color-white);
-    font-size: var(--font-size-subtitle);
-    font-family: var(--letter-font-family-2);
-    letter-spacing: 1px;
-    padding: 0 calc(var(--gap-large) + 2px);
-    padding-bottom: var(--gap-large);
-    text-align: justify;
-    line-height: 1.4;
-}
-
-.authorQuote {
-    display: flex;
-    justify-content: flex-end;
-    color: var(--blue-gamma-light);
-    font-size: var(--font-size-body);
-    font-family: var(--letter-font-family-2);
-    letter-spacing: 1px;
-    padding-right: calc(var(--container-padding) + 20px);
-    padding-bottom: var(--gap-tiny);
-}
-
 .divButtonsQuote {
     display: flex;
     justify-content: space-between;

@@ -7,6 +7,11 @@ import ErrorMessage from '../../utils/error/ErrorMessage'
 import './profile.css'
 
 export default function Profile() {
+                const handleCancel = () => {
+                    setIsEditing(false);
+                    setUpdateError('');
+                    setActualizacion('');
+                }
             const getButtonText = () => {
                 if (loading) {
                     return 'Guardando...';

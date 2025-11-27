@@ -4,15 +4,16 @@ import { useAuth } from '../../../contextos/authContext'
 import { messageContext } from '../../../contextos/messageContext'
 import { useParams } from 'react-router-dom'
 
-const MessageCard = ({ _id, content, createdBy}) => {
+const MessageCard = ({ _id, content, userName }) => {
     const { user } = useAuth()
     const { deleteMessageById } = useContext(messageContext)
     const { groupId } = useParams()
     const getIsMyMessage = () => {
-        if (!user || !user._id || !createdBy || typeof createdBy !== 'object' || !createdBy._id) {
+        if (!user || !user._id) {
             return false
         }
-        return user._id === createdBy._id
+        // No hay createdBy, pero si el mensaje es mío, el userName debería coincidir
+        return user.name === userName
     }
     const getMessageClass = () => {
         if (getIsMyMessage()) {
@@ -40,7 +41,7 @@ const MessageCard = ({ _id, content, createdBy}) => {
         <div className={getMessageClass()}>
             {!getIsMyMessage() && (
                 <div className="messageAuthor">
-                    {(createdBy && typeof createdBy === 'object' && createdBy.name) ? createdBy.name : 'Usuario desconocido'}
+                    {userName ? userName : 'Usuario desconocido'}
                 </div>
             )}
             <div className="messageContent">{content}</div>
