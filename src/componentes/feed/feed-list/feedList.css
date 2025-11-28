@@ -18,9 +18,14 @@
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 90%;
+    max-width: 600px;
     gap: var(--gap-large);
     padding: 0 var(--gap-small);
+    outline: 2px solid #eff6e0;
+    outline-offset: 0px;
+    border-radius: 12px;
+    background-color: #23283b;
     color: var(--letter-color-white);
 }
 
