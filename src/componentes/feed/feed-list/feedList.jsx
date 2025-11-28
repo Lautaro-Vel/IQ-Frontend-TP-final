@@ -12,14 +12,15 @@ export default function FeedList() {
                 <div className="noCitasMessage">No hay citas por el momento.</div>
             ) : (
                 quotes.map((quote) => (
-                    <QuoteCard
-                        key={quote._id}
-                        author={quote.author}
-                        createdBy={quote.createdBy}
-                        _id={quote._id}
-                        quote={quote.quote}
-                        userName={quote.userName}
-                    />
+                    <div className="quoteCardContainer" key={quote._id}>
+                        <QuoteCard
+                            author={quote.author}
+                            createdBy={quote.createdBy}
+                            _id={quote._id}
+                            quote={quote.quote}
+                            userName={quote.userName}
+                        />
+                    </div>
                 ))
             )}
         </div>
