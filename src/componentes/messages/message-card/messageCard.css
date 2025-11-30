@@ -1,4 +1,5 @@
 .messageCard {
+    width: 40%;
     max-width: var(--container-medium);
     padding: var(--gap-medium);
     border-radius: var(--gap-large);
@@ -11,19 +12,17 @@
 }
 
 .myMessage {
-    align-self: flex-end;
-    background: var(--blue-gamma-light);
-    color: var(--letter-color-white);
     margin-left: auto;
+    background: var(--blue-gamma-dark);
+    color: var(--blue-gamma-light);
     border: 2px solid var(--blue-gamma-intermediate);
 }
 
 .otherMessage {
-    align-self: flex-start;
+    margin-right: auto;
     background: var(--letter-color-white);
     color: var(--blue-gamma-dark);
     border: 2px solid var(--blue-gamma-intermediate);
-    margin-right: auto;
 }
 
 .messageAuthor {
@@ -116,7 +115,7 @@
     }
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 1023px) {
     .messageCard {
         max-width: 75%;
@@ -129,7 +128,7 @@
     }
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
     .messageCard {
         max-width: 85%;

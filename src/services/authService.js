@@ -1,16 +1,14 @@
 import { HTTP_METHODS, HEADERS, CONTENT_TYPE_VALUES } from '../dictionary/httpDictionary.js'
 import ENVIRONMENT from '../config/environmentConfig.js'
 
-const URL_API_AUTH = ENVIRONMENT.URL_API + "/auth"
-
 export async function register(userData) {
     const user = {
         userName: userData.name,
-        mail: userData.gmail,
+        mail: userData.mail,
         password: userData.password
     }
     
-    const registerUrl = `${URL_API_AUTH}/register`
+    const registerUrl = `${ENVIRONMENT.URL_API}/api/auth/register`
     
     try {
         const httpRequest = await fetch(registerUrl, {
@@ -20,16 +18,14 @@ export async function register(userData) {
             },
             body: JSON.stringify(user)
         })
-        
-        
         if (!httpRequest.ok) {
             console.error('❌ Error HTTP:', httpRequest.status, httpRequest.statusText)
         }
-        
         const httpResponse = await httpRequest.json()
-        
         if(!httpResponse.ok) {
-            throw new Error(httpResponse.message || 'Error en el registro')
+            const error = new Error(httpResponse.message || 'Error en el registro')
+            error.status = httpResponse.status || httpRequest.status || 500
+            throw error
         }
         return httpResponse
     } catch (error) {
@@ -39,7 +35,7 @@ export async function register(userData) {
 }
 export async function verifyEmail(token) {
     const httpRequest = await fetch (
-        `${URL_API_AUTH}/check-mail/${token}`,
+        `${ENVIRONMENT.URL_API}/api/auth/check-mail/${token}`,
         {
             method: HTTP_METHODS.GET,
             headers: {
@@ -49,7 +45,9 @@ export async function verifyEmail(token) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.message || 'Error al verificar el email')
+        const error = new Error(httpResponse.message || 'Error al verificar el email')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -71,7 +69,9 @@ export async function login(user) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.message || 'Error en el login')
+        const error = new Error(httpResponse.message || 'Error en el login')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }

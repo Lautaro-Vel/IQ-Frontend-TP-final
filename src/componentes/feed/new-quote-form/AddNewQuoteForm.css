@@ -90,7 +90,7 @@
     font-size: calc(var(--header-height) - 15px);
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 1023px) {
     .labelAddCita {
         padding-right: var(--gap-large);

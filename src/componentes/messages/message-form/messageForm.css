@@ -82,7 +82,7 @@
     font-size: calc(var(--font-size-body) + 0.1em);
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 1023px) {
     .messageForm {
         padding: var(--gap-medium);
@@ -105,14 +105,14 @@
     }
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
     .messageForm {
         padding: var(--gap-medium) var(--gap-small);
     }
     
     .messageInput {
-        font-size: var(--font-size-body); /* Prevents zoom on iOS */
+        font-size: var(--font-size-body);
         padding: var(--gap-small);
         min-height: 40px;
         max-height: 100px;

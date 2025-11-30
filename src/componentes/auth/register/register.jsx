@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../../contextos/authContext'
 import ErrorMessage from '../../../utils/error/ErrorMessage'
+import SuccessMessage from '../../../utils/success/SuccessMessage'
 import './register.css'
 
 export default function Register() {
@@ -10,23 +11,52 @@ export default function Register() {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [registroExitoso, setRegistroExitoso] = useState('')
-    const { registerUser, error, loading } = useAuth()
+    const [localError, setLocalError] = useState('')
+    const { registerUser, error, loading, setError } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+
+    useEffect(() => {
+        if (error) setError('')
+        if (localError) setLocalError('')
+    }, [location.pathname])
+
+
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
-        setRegistroExitoso('')        
-        if (password !== confirmPassword) {
-            alert('Las contraseñas no coinciden')
+        setRegistroExitoso('')
+
+        if (!name.trim()) {
+            setLocalError('El nombre es obligatorio.')
             return
         }
-        const result = await registerUser({ name, gmail, password })
+        if (!validateEmail(gmail)) {
+            setLocalError('El email ingresado no es válido.')
+            return
+        }
+        if (password.length < 8) {
+            setLocalError('La contraseña debe tener al menos 8 caracteres.')
+            return
+        }
+        if (password !== confirmPassword) {
+            setLocalError('Las contraseñas no coinciden.')
+            return
+        }
+        const result = await registerUser({ name, mail: gmail, password })
         if (result && result.ok) {
-            setRegistroExitoso(result.message)
+            setRegistroExitoso(
+                (result.message ? result.message + ' ' : '') +
+                'Te enviamos un mail de verificación. Revisa tu bandeja de entrada y spam para activar tu cuenta.'
+            );
             setTimeout(() => {
                 navigate('/login')
-            }, 3000)
+            }, 4000)
         }
-    }    
+    }
     const goToLogin = () => {
         navigate('/login')
     }
@@ -40,7 +70,7 @@ export default function Register() {
     return (
         <div className="registerContainer">
             <div className="registerDiv">
-                <h2 className="registerTitle">Crear Cuenta</h2>                
+                <h2 className="registerTitle">Crear Cuenta</h2>
                 <form className="registerForm" onSubmit={handleSubmit}>
                     <div className="inputGroup">
                         <label>Nombre:</label>
@@ -82,11 +112,15 @@ export default function Register() {
                             disabled={loading}
                         />
                     </div>
-                    {/* Si hay error pero existe token en localStorage, no mostrar alerta */}
+
+                    {localError && (
+                        <ErrorMessage status={400} message={localError} />
+                    )}
+
                     {error && !(typeof error === 'object' && error.message && error.message.toLowerCase().includes('token') && localStorage.getItem('token')) && (
                         <ErrorMessage status={error.status} message={error.message} />
                     )}
-                    {registroExitoso && <p className="exitoMessage">{registroExitoso}</p>}
+                    {registroExitoso && <SuccessMessage message={registroExitoso} title="Registro exitoso" />}
                     <button 
                         type="submit" 
                         className="registerButton"

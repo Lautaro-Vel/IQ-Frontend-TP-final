@@ -16,7 +16,9 @@ export async function getUserProfile() {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener perfil')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -35,7 +37,9 @@ export async function updateUserProfile(userData) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al actualizar perfil')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -53,7 +57,9 @@ export async function deleteUserAccount() {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al eliminar cuenta')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -72,7 +78,9 @@ export async function getUserById(userId) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener usuario')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }

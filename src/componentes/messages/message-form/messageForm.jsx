@@ -1,32 +1,37 @@
-import './messageForm.css'
+import './messageForm.css';
 import React, { useContext, useState } from "react";
 import { messageContext } from "../../../contextos/messageContext";
+import ErrorMessage from '../../../utils/error/ErrorMessage';
 
 export default function MessageForm({ groupId }) {
-    const { sendNewMessage } = useContext(messageContext)
-    const [messageText, setMessageText] = useState('')
+    const { sendNewMessage } = useContext(messageContext);
+    const [messageText, setMessageText] = useState('');
+    const [localError, setLocalError] = useState('');
+
     const handleSendMessage = async (event) => {
-        event.preventDefault()
-        if (messageText.trim() === '') {
-            return
+        event.preventDefault();
+        if (messageText.trim() === '' || messageText.trim().length < 2) {
+            setLocalError('El mensaje debe tener al menos 2 caracteres.');
+            return;
         }
         const messageData = {
             message: messageText.trim()
-        }
-        const result = await sendNewMessage(groupId, messageData)
+        };
+        const result = await sendNewMessage(groupId, messageData);
         if (result) {
-            setMessageText('')
+            setMessageText('');
+            setLocalError('');
         }
-    }
+    };
     const handleInputChange = (event) => {
-        setMessageText(event.target.value)
-    }
+        setMessageText(event.target.value);
+    };
     const handleKeyDown = (event) => {
         if (event.key === 'Enter' && !event.shiftKey) {
-            event.preventDefault()
-            handleSendMessage(event)
+            event.preventDefault();
+            handleSendMessage(event);
         }
-    }
+    };
 
     return (
         <form className='messageForm' onSubmit={handleSendMessage}>
@@ -48,6 +53,10 @@ export default function MessageForm({ groupId }) {
                     <i className="bi bi-send"></i>
                 </button>
             </div>
+
+            {localError && (
+                <ErrorMessage status={400} message={localError} />
+            )}
         </form>
-    )
+    );
 }

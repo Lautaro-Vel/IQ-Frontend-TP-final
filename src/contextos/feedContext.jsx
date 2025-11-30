@@ -1,6 +1,8 @@
 import {useState, createContext, useEffect} from 'react'
 import { quotesService } from '../services/quotesService'
 
+import { useAuth } from '../contextos/authContext';
+
 export const feedContext = createContext({
     quotes: [],
     handleDeleteQuote: (quoteId) => {},
@@ -10,6 +12,7 @@ const FeedContextProvider = function ({children}) {
     const [quotes, setQuotes] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
+    const { token } = useAuth();
     useEffect(() => {
         const getQuotes = async () => {
             setLoading(true)
@@ -17,30 +20,32 @@ const FeedContextProvider = function ({children}) {
             try {
                 const response = await quotesService.getAllQuotes()
                 if (response.ok) {
-                    setQuotes(response.data.quotes)
-                    // Si no hay citas, no es error, solo UI vacía
+                    setQuotes([...response.data.quotes])
+                    if (!response.data.quotes || response.data.quotes.length === 0) {
+                        setError('')
+                    }
                 } else if (response.status === 404 || (response.data && response.data.length === 0)) {
                     setQuotes([])
                     setError('')
                 } else {
                     setError({ status: response.status, message: response.message })
                 }
-            } 
-            catch (error) {
-                // Si el error es por token, sí mostrarlo
-                if (error.message && error.message.toLowerCase().includes('token')) {
+            } catch (error) {
+                if (error && error.status) {
+                    setError({ status: error.status, message: error.message })
+                } else if (error && error.message && error.message.toLowerCase().includes('token')) {
                     setError({ status: 401, message: error.message })
+                } else if (error && error.message) {
+                    setError({ status: 500, message: error.message })
                 } else {
-                    // Si es por ausencia de citas, no mostrar error
-                    setError('')
+                    setError({ status: 500, message: 'Error desconocido al cargar citas.' })
                 }
-            } 
-            finally {
-                setLoading(false)
+            } finally {
+                setTimeout(() => setLoading(false), 300)
             }
         }
         getQuotes()
-    }, [])
+    }, [token])
     const handleDeleteQuote = async (quoteId) => {
         try {
             const response = await quotesService.deleteQuote(quoteId)
@@ -54,7 +59,11 @@ const FeedContextProvider = function ({children}) {
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' })
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' })
+            }
             return false
         }
     }
@@ -71,7 +80,11 @@ const FeedContextProvider = function ({children}) {
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' })
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' })
+            }
             return false
         }
         finally {

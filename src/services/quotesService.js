@@ -7,8 +7,10 @@ export async function getAllQuotes() {
     const quotesUrl = `${URL_API_QUOTES}/home-quotes`;
     const token = localStorage.getItem('token');
     if (!token || token === 'null') {
-        // Si no hay token, no se hace la petición y se lanza error para redirigir al login
-        throw new Error('No hay token de autorización, por favor inicia sesión');
+
+        const error = new Error('No hay token de autorización, por favor inicia sesión');
+        error.status = 401;
+        throw error;
     }
     const httpRequest = await fetch(
         quotesUrl,
@@ -22,7 +24,9 @@ export async function getAllQuotes() {
     );
     const httpResponse = await httpRequest.json();
     if (!httpResponse.ok) {
-        throw new Error(httpResponse.data);
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener citas');
+        error.status = httpResponse.status || httpRequest.status || 500;
+        throw error;
     }
     return httpResponse;
 }
@@ -40,7 +44,9 @@ export async function getMyQuotes() {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener mis citas')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -60,7 +66,9 @@ export async function createQuote(quoteData) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al crear cita')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -80,7 +88,9 @@ export async function deleteQuote(quoteId) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al eliminar cita')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -100,7 +110,9 @@ export async function getQuotesByUser(userId) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener citas del usuario')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }

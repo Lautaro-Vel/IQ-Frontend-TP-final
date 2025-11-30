@@ -51,7 +51,7 @@
     line-height: 1.4;
 }
 
-/* Alternative loading states */
+
 .spinner-dots {
     display: flex;
     gap: var(--gap-small);
@@ -82,7 +82,7 @@
     }
 }
 
-/* Card-style loader */
+
 .spinner-card {
     background: var(--letter-color-white);
     padding: var(--gap-xlarge);
@@ -112,7 +112,7 @@
     margin: 0;
 }
 
-/* Overlay spinner */
+
 .spinner-overlay {
     position: fixed;
     top: 0;
@@ -132,7 +132,7 @@
     max-width: 350px;
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 1023px) {
     .spinner-container {
         padding: var(--gap-medium);
@@ -165,7 +165,7 @@
     }
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
     .spinner-container {
         padding: var(--gap-small);

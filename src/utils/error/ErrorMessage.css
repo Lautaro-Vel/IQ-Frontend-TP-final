@@ -1,5 +1,5 @@
 
-/* Floating global error alert */
+
 .errorMessageFloating {
     position: fixed;
     top: 32px;
@@ -159,7 +159,7 @@
     }
 }
 
-/* Quick error message (inline) */
+
 .errorMessageInline {
     background: rgba(255, 59, 48, 0.1);
     border: 1px solid #ff3b30;
@@ -179,7 +179,7 @@
     flex-shrink: 0;
 }
 
-/* Network specific error */
+
 .networkError {
     border-color: #ff9500;
 }
@@ -193,7 +193,7 @@
     color: #ff9500;
 }
 
-/* Validation specific error */
+
 .validationError {
     border-color: #ff6b6b;
 }

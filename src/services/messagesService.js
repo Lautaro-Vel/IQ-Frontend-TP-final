@@ -1,11 +1,10 @@
 import { HTTP_METHODS, HEADERS, CONTENT_TYPE_VALUES } from '../dictionary/httpDictionary.js'
 import ENVIRONMENT from '../config/environmentConfig.js'
 
-const URL_API_GROUPS = ENVIRONMENT.URL_API + "/groups"
 export async function getGroupMessages(groupId) {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${URL_API_GROUPS}/${groupId}/messages`,
+        `${ENVIRONMENT.URL_API}/api/groups/${groupId}/messages`,
         {
             method: HTTP_METHODS.GET,
             headers: {
@@ -16,14 +15,16 @@ export async function getGroupMessages(groupId) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener mensajes')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
 export async function sendMessage(groupId, messageData) {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${URL_API_GROUPS}/${groupId}/messages`,
+        `${ENVIRONMENT.URL_API}/api/groups/${groupId}/messages`,
         {
             method: HTTP_METHODS.POST,
             headers: {
@@ -35,14 +36,16 @@ export async function sendMessage(groupId, messageData) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al enviar mensaje')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
 export async function deleteMessage(groupId, messageId) {
     const token = localStorage.getItem('token')
     const httpRequest = await fetch (
-        `${URL_API_GROUPS}/${groupId}/messages/${messageId}`,
+        `${ENVIRONMENT.URL_API}/api/groups/${groupId}/messages/${messageId}`,
         {
             method: HTTP_METHODS.DELETE,
             headers: {
@@ -53,7 +56,9 @@ export async function deleteMessage(groupId, messageId) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al eliminar mensaje')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }

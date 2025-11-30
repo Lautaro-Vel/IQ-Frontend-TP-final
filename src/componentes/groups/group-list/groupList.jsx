@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { groupContext } from '../../../contextos/readingGroupContext'
 import ErrorMessage from '../../../utils/error/ErrorMessage'
 import './groupList.css'
@@ -12,29 +12,71 @@ export default function GroupList() {
         joinNewGroup,
         leaveGroupById,
         createNewGroup,
-        error
+        error,
+        loading
     } = useContext(groupContext)
+    const navigate = useNavigate();
+    const handleGoHomeQuotes = () => {
+        navigate("/");
+    }
     const [mostrarCreateForm, setmostrarCreateForm] = useState(false)
     const [newGroupData, setNewGroupData] = useState({
         name: '',
         description: '',
         maxMembers: 10
     })
+    const [localError, setLocalError] = useState('')
     useEffect(() => {
         getAllGroupsData()
     }, [])
     const handleJoinGroup = async (groupId) => {
         await joinNewGroup(groupId)
     }
+
+    const waitForMembershipAndNavigate = async (groupId) => {
+        let attempts = 0;
+        while (attempts < 10) {
+            const isMember = isUserInGroup(groupId);
+            if (isMember) {
+                navigate(`/messages/${groupId}`);
+                return;
+            }
+            await new Promise(res => setTimeout(res, 200));
+            attempts++;
+        }
+        setLocalError('No se pudo acceder al grupo, intenta nuevamente.');
+    }
     const handleLeaveGroup = async (groupId) => {
         await leaveGroupById(groupId)
     }
     const handleCreateGroup = async (event) => {
         event.preventDefault()
-        const result = await createNewGroup(newGroupData)
+        if (!newGroupData.name.trim() || newGroupData.name.length < 3) {
+            setLocalError('El nombre del grupo debe tener al menos 3 caracteres.')
+            return
+        }
+        if (!newGroupData.description.trim() || newGroupData.description.length < 10) {
+            setLocalError('La descripción debe tener al menos 10 caracteres.')
+            return
+        }
+        if (!newGroupData.maxMembers || newGroupData.maxMembers < 2 || newGroupData.maxMembers > 50) {
+            setLocalError('El máximo de miembros debe estar entre 2 y 50.')
+            return
+        }
+        let result = null;
+        try {
+            result = await createNewGroup({
+                groupName: newGroupData.name,
+                description: newGroupData.description
+            });
+        } catch (err) {
+            setLocalError(err?.message || 'Error al crear el grupo');
+            return;
+        }
         if (result) {
             setNewGroupData({ name: '', description: '', maxMembers: 10 })
             setmostrarCreateForm(false)
+            setLocalError('')
         }
     }
     const handleInputChange = (detalle, valor) => {
@@ -72,6 +114,12 @@ export default function GroupList() {
     }
     return (
         <div className="group-list-container">
+            <button
+                className="goHomeQuotesButton"
+                onClick={handleGoHomeQuotes}
+            >
+                Volver a Home de Quotes
+            </button>
             <div className="group-header">
                 <h1>Grupos de Lectura</h1>
                 <button 
@@ -81,7 +129,6 @@ export default function GroupList() {
                     {getButtonText()}
                 </button>
             </div>
-            {/* Nunca mostrar la alerta de error en la pantalla de grupos */}
             {mostrarCreateForm && (
                 <form className="create-group-form" onSubmit={handleCreateGroup}>
                     <h3>Crear Nuevo Grupo</h3>
@@ -107,7 +154,12 @@ export default function GroupList() {
                         max="50"
                         required
                     />
-                    <button type="submit" className="btn-submit">Crear Grupo</button>
+                    <button type="submit" className="btn-submit" disabled={loading}>
+                        {loading ? 'Creando...' : 'Crear Grupo'}
+                    </button>
+                    {localError && (
+                        <ErrorMessage status={400} message={localError} />
+                    )}
                 </form>
             )}
             <div className="groups-sections">
@@ -136,9 +188,12 @@ export default function GroupList() {
                                         >
                                             Salir del Grupo
                                         </button>
-                                        <Link to={`/messages/${group._id}`} className="btn-messages">
+                                        <button 
+                                            className="btn-messages"
+                                            onClick={() => waitForMembershipAndNavigate(group._id)}
+                                        >
                                             Ver Mensajes
-                                        </Link>
+                                        </button>
                                     </div>
                                 </div>
                                 )

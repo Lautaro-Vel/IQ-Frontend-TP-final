@@ -30,6 +30,11 @@ const DetailsContextProvider = ({children}) => {
                 }
             } 
             catch (error) {
+                if (error && error.status) {
+                    setError({ status: error.status, message: error.message || 'Error de conexión' })
+                } else {
+                    setError({ status: 500, message: error.message || 'Error de conexión' })
+                }
                 return false
             }
             finally {

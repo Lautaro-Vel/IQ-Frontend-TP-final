@@ -1,4 +1,4 @@
-/* Estilo para los campos del perfil sin estilos en línea */
+
 .profileField {
     font-size: 1.2em;
     font-weight: bold;
@@ -247,7 +247,7 @@
     margin-bottom: var(--gap-large);
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 1023px) {
     .profileContainer {
         padding: var(--gap-large) var(--gap-medium);
@@ -277,7 +277,7 @@
     }
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
     .profileContainer {
         padding: var(--gap-large) var(--gap-small);

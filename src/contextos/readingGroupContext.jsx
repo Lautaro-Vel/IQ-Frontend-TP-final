@@ -23,14 +23,15 @@ const GroupContextProvider = ({ children }) => {
             const response = await getAllGroups()
             if (response.ok) {
                 setAllGroups(response.data.groups)
-                // Nunca setear error si ok:true, aunque la lista esté vacía
+
             } else if (response.status && response.status >= 400 && response.message) {
                 setError({ status: response.status, message: response.message })
             }
         } 
         catch (error) {
-            // Si el error es por token, sí mostrarlo
-            if (error && error.message && error.message.toLowerCase().includes('token')) {
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message })
+            } else if (error && error.message && error.message.toLowerCase().includes('token')) {
                 setError({ status: 401, message: error.message })
             } else if (error && error.message) {
                 setError({ status: 500, message: error.message })
@@ -52,7 +53,11 @@ const GroupContextProvider = ({ children }) => {
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' })
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' })
+            }
             return false
         } 
         finally {
@@ -64,15 +69,21 @@ const GroupContextProvider = ({ children }) => {
         setError('')
         try {
             const response = await getGroupById(groupId)
-            if (response.ok) {
+            if (response.ok && response.data && response.data.group) {
                 setGroup(response.data.group)
                 return response.data.group
             } else {
+                setGroup(null)
                 setError({ status: response.status, message: response.message })
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            setGroup(null)
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' })
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' })
+            }
             return false
         } 
         finally {
@@ -83,24 +94,31 @@ const GroupContextProvider = ({ children }) => {
         setLoading(false)
         setError('')
         try {
+
             const response = await createGroup({
-                groupName: groupData.name,
+                groupName: groupData.groupName || groupData.name,
                 description: groupData.description
-            })
+            });
+
             if (response.ok) {
-                const newGroup = response.data.group
-                await getMyGroupsList()
-                return newGroup
+                const newGroup = response.data.group;
+                await getMyGroupsList();
+                return newGroup;
             } else {
-                setError({ status: response.status, message: response.message })
+                setError({ status: response.status, message: response.message });
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
-            return false
+
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' });
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' });
+            }
+            return false;
         } 
         finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
     const joinNewGroup = async (groupId) => {
@@ -117,7 +135,11 @@ const GroupContextProvider = ({ children }) => {
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' })
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' })
+            }
             return false
         } 
         finally {
@@ -138,7 +160,11 @@ const GroupContextProvider = ({ children }) => {
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' })
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' })
+            }
             return false
         } 
         finally {
@@ -164,7 +190,11 @@ const GroupContextProvider = ({ children }) => {
                 setError({ status: myGroupsRes.status, message: myGroupsRes.message })
             }
         } catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' })
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' })
+            }
         } finally {
             setLoading(false)
         }

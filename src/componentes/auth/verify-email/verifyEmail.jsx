@@ -78,7 +78,7 @@ function VerifyEmail() {
                         <h1 className="verifyEmailTitle error">
                             Error de Verificación
                         </h1>
-                        {/* Si hay error pero existe token en localStorage, no mostrar alerta */}
+
                         {error && !(typeof error === 'string' && error.toLowerCase().includes('token') && localStorage.getItem('token')) && (
                             <ErrorMessage error={error} />
                         )}

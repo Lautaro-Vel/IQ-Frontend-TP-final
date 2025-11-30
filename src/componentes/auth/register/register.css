@@ -154,7 +154,7 @@
     color: var(--blue-gamma-light);
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 767px) {
     .registerContainer {
         padding: var(--gap-medium);
@@ -190,7 +190,7 @@
     border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 479px) {
     .registerContainer {
         padding: var(--gap-small);

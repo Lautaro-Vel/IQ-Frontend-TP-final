@@ -9,7 +9,7 @@ export default function HomeScreen() {
     if (loading) {
         return <LoadSpinner />
     }
-    // Si hay error pero existe token en localStorage, no mostrar alerta
+
     if (error && !(typeof error === 'object' && error.message && error.message.toLowerCase().includes('token') && localStorage.getItem('token'))) {
         return <ErrorMessage title="Error al cargar las citas" message={typeof error === 'object' ? error.message : error} status={error && typeof error === 'object' ? error.status : undefined} />
     }

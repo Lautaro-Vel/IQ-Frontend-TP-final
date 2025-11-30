@@ -1,40 +1,59 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
-import UserContext from '../../contextos/userContext'
-import LoadSpinner from '../../utils/loadSpinner/LoadSpinner'
-import ErrorMessage from '../../utils/error/ErrorMessage'
-import './profile.css'
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserContext from '../../contextos/userContext';
+import LoadSpinner from '../../utils/loadSpinner/LoadSpinner';
+import ErrorMessage from '../../utils/error/ErrorMessage';
+import './profile.css';
 
 export default function Profile() {
-                const handleCancel = () => {
-                    setIsEditing(false);
-                    setUpdateError('');
-                    setActualizacion('');
-                }
-            const getButtonText = () => {
-                if (loading) {
-                    return 'Guardando...';
-                }
-                return 'Guardar';
-            }
-        const goHome = () => {
-            navigate('/');
-        }
-    const {userProfile, loading, error, updateUserProfile, updateUserTemporal} = useContext(UserContext)
-    const [isEditing, setIsEditing] = useState(false)
-    const [updateError, setUpdateError] = useState('')
-    const [actualizacion, setActualizacion] = useState('')
-    const navigate = useNavigate()
+    const { userProfile, loading, error, updateUserProfile, updateUserTemporal } = useContext(UserContext);
+    const [isEditing, setIsEditing] = useState(false);
+    const [updateError, setUpdateError] = useState('');
+    const [actualizacion, setActualizacion] = useState('');
+    const navigate = useNavigate();
+
+    const handleCancel = () => {
+        setIsEditing(false);
+        setUpdateError('');
+        setActualizacion('');
+    };
+
+    const getButtonText = () => {
+        return loading ? 'Guardando...' : 'Guardar';
+    };
+
+    const goHome = () => {
+        navigate('/');
+    };
 
     const handleInputChange = (event) => {
-        const { name, value } = event.target
-        updateUserTemporal(name, value)
-    }
-
+        const { name, value } = event.target;
+        updateUserTemporal(name, value);
+    };
     const handleSubmit = async (event) => {
         event.preventDefault();
         setUpdateError('');
+
+        if (!userProfile.name?.trim() && !userProfile.userName?.trim()) {
+            setUpdateError('El nombre es obligatorio.');
+            return;
+        }
+        if (!userProfile.userSurname?.trim()) {
+            setUpdateError('El apellido es obligatorio.');
+            return;
+        }
+        if (!userProfile.age || userProfile.age < 1 || userProfile.age > 120) {
+            setUpdateError('La edad debe estar entre 1 y 120.');
+            return;
+        }
+        if (!userProfile.profession?.trim()) {
+            setUpdateError('La profesión es obligatoria.');
+            return;
+        }
+        if (!userProfile.nationality?.trim()) {
+            setUpdateError('La nacionalidad es obligatoria.');
+            return;
+        }
         const request = await updateUserProfile({
             userName: userProfile.name,
             userSurname: userProfile.userSurname,
@@ -54,7 +73,7 @@ export default function Profile() {
     if (loading) {
         return <LoadSpinner />;
     }
-    // Si hay error pero existe token en localStorage, no mostrar alerta
+
     if (error && !(typeof error === 'object' && error.message && error.message.toLowerCase().includes('token') && localStorage.getItem('token'))) {
         return <ErrorMessage status={error.status} message={error.message} />;
     }
@@ -66,7 +85,7 @@ export default function Profile() {
         );
     }
 
-    // Renderizar nombre y gmail correctamente, sin estilos en línea
+
     return (
         <div className="profileContainer">
             <div className="profileHeader">
@@ -91,7 +110,7 @@ export default function Profile() {
                             <input
                                 type="text"
                                 name="name"
-                                value={userProfile.userName || userProfile.name || ''}
+                                value={userProfile.name || ''}
                                 onChange={handleInputChange}
                                 required
                             />
@@ -161,7 +180,6 @@ export default function Profile() {
                             <div className="profileField">{userProfile.nationality || ''}</div>
                         )}
                     </div>
-                    {/* Si hay error pero existe token en localStorage, no mostrar alerta */}
                     {updateError && !(typeof updateError === 'object' && updateError.message && updateError.message.toLowerCase().includes('token') && localStorage.getItem('token')) && (
                         <ErrorMessage status={updateError.status} message={updateError.message} />
                     )}

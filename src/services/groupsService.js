@@ -14,7 +14,9 @@ export async function getAllGroups() {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener grupos')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -30,7 +32,9 @@ export async function getGroupById(groupId) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener grupo')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -48,7 +52,9 @@ export async function getMyGroups() {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al obtener mis grupos')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -67,7 +73,9 @@ export async function createGroup(groupData) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al crear grupo')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -85,7 +93,9 @@ export async function joinGroup(groupId) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al unirse al grupo')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }
@@ -103,7 +113,9 @@ export async function leaveGroup(groupId) {
     )
     const httpResponse = await httpRequest.json()
     if(!httpResponse.ok) {
-        throw new Error(httpResponse.data)
+        const error = new Error(httpResponse.message || httpResponse.data || 'Error al salir del grupo')
+        error.status = httpResponse.status || httpRequest.status || 500
+        throw error
     }
     return httpResponse
 }

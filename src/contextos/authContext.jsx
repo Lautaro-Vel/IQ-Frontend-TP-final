@@ -81,7 +81,6 @@ const AuthProvider = ({ children }) => {
         setError('')
         try {
             const response = await authService.login(credentials)
-            // Soporte para diferentes formatos de respuesta
             let token = null;
             let user = null;
             if (response.ok) {
@@ -104,7 +103,12 @@ const AuthProvider = ({ children }) => {
                 return false;
             }
         } catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' });
+
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' });
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' });
+            }
             return false;
         } finally {
             setLoading(false);
@@ -126,7 +130,11 @@ const AuthProvider = ({ children }) => {
             }
         } 
         catch (error) {
-            setError({ status: 500, message: error.message || 'Error de conexión' })
+            if (error && error.status) {
+                setError({ status: error.status, message: error.message || 'Error de conexión' })
+            } else {
+                setError({ status: 500, message: error.message || 'Error de conexión' })
+            }
             return { ok: false }
         }
         finally {

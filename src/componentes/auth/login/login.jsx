@@ -1,19 +1,40 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../../contextos/authContext'
 import { authService } from '../../../services/authService'
 import ErrorMessage from '../../../utils/error/ErrorMessage'
 import './login.css'
 
 export default function Login() {
+
     const [gmail, setGmail] = useState('')
+    const [localError, setLocalError] = useState('')
     const [password, setPassword] = useState('')
-    const { loginUser, error, loading } = useAuth()
+    const { loginUser, error, loading, setError } = useAuth()
     const navigate = useNavigate()
-    
-    
+    const location = useLocation()
+
+    useEffect(() => {
+        if (error) setError('')
+        if (localError) setLocalError('')
+    }, [location.pathname])
+
+
+    const validateEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
+
+        if (!validateEmail(gmail)) {
+            setLocalError('El email ingresado no es válido.')
+            return
+        }
+        if (password.length < 8) {
+            setLocalError('La contraseña debe tener al menos 8 caracteres.')
+            return
+        }
         const request = await loginUser({ gmail, password })
         if (request) {
             navigate('/')
@@ -54,7 +75,11 @@ export default function Login() {
                             disabled={loading}
                         />
                     </div>
-                    {/* Si hay error pero existe token en localStorage, no mostrar alerta */}
+
+                    {localError && (
+                        <ErrorMessage status={400} message={localError} />
+                    )}
+
                     {error && !(typeof error === 'object' && error.message && error.message.toLowerCase().includes('token') && localStorage.getItem('token')) && (
                         <ErrorMessage status={error.status} message={error.message} />
                     )}

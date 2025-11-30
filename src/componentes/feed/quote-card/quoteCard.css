@@ -1,25 +1,19 @@
-.userDivQuote {
-    color: #eff6e0;
-    border-radius: 12px;
-    border: 2px solid var(--letter-color-white);
-}
 .divQuote {
-    background-color: #23283b;
+    width: 100%;
+    height: 100%;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     padding: 24px 20px;
-    margin: 18px auto;
+    margin: 24px 20px;;
     max-width: 600px;
     width: 600px;
-    color: #eff6e0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 90px;
     align-items: stretch;
     outline: 2px solid #eff6e0;
     outline-offset: 0px;
 }
-
 
 .paragraphUserQuote {
     color: #eff6e0;
@@ -52,6 +46,7 @@
     text-align: right;
     margin-bottom: 6px;
     background: transparent;
+    margin-bottom: 20px;
 }
 
 .divButtonsQuote {

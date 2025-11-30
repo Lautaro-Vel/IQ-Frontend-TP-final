@@ -9,6 +9,6 @@ export default function GroupsScreen() {
     if (loading) {
         return <LoadSpinner />
     }
-    // Siempre mostrar la pantalla de grupos, sin importar errores
+
     return <GroupList />
 }

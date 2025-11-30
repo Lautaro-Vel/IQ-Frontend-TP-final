@@ -4,7 +4,7 @@ import './ErrorMessage.css';
 export default function ErrorMessage({ status, message, title, error }) {
     const [visible, setVisible] = useState(true);
 
-    // Normalize error input
+
     let errorMessage = message || 'Ha ocurrido un error';
     let errorStatus = status;
     let errorTitle = title || 'Error';

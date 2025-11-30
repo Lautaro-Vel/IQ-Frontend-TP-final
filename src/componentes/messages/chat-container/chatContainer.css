@@ -52,7 +52,7 @@
     flex: 1;
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
     .chatHeader {
         padding: var(--gap-small) var(--gap-medium);

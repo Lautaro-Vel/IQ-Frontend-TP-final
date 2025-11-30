@@ -106,7 +106,7 @@
     }
 }
 
-/* Loading state for messages */
+
 .messagesLoading {
     display: flex;
     justify-content: center;
@@ -132,7 +132,7 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Message grouping by date */
+
 .dateGroup {
     margin: var(--gap-large) 0;
 }
@@ -173,7 +173,7 @@
     letter-spacing: 0.5px;
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 1023px) {
     .divContainerChatMessages {
         padding: var(--gap-medium);
@@ -208,7 +208,7 @@
     }
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
     .divContainerChatMessages {
         padding: var(--gap-small);

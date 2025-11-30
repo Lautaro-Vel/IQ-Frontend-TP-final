@@ -154,7 +154,7 @@
     color: var(--blue-gamma-light);
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 479px) {
     .loginContainer {
         padding: var(--gap-medium);

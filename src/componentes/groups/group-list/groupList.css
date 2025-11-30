@@ -1,4 +1,31 @@
-/* GroupList.css */
+
+.goHomeQuotesButton {
+    margin: 16px 0;
+    padding: 8px 18px;
+    font-size: 1rem;
+    border-radius: 8px;
+    background: #23283b;
+    color: #eff6e0;
+    border: 2px solid #598392;
+    cursor: pointer;
+    font-family: var(--letter-font-family-1);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.goHomeQuotesButton:hover {
+    background: #598392;
+    color: #23283b;
+    border-color: #23283b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
 .group-list-container {
     max-width: var(--container-max-width);
     margin: 0 auto;
@@ -51,7 +78,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Create Group Form */
+
 .create-group-form {
     background: var(--background-color-dark--2);
     padding: var(--gap-large);
@@ -118,7 +145,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Groups Sections */
+
 .groups-sections {
     display: flex;
     flex-direction: column;
@@ -142,14 +169,14 @@
     border-bottom-color: var(--blue-gamma-intense);
 }
 
-/* Groups Grid */
+
 .groups-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: var(--gap-large);
 }
 
-/* Group Cards */
+
 .group-card {
     background: var(--background-color-dark--2);
     border: 2px solid var(--blue-gamma-intermediate);
@@ -220,7 +247,7 @@
     border: 1px solid var(--blue-gamma-intermediate);
 }
 
-/* Group Actions */
+
 .group-actions {
     display: flex;
     gap: var(--gap-small);
@@ -287,7 +314,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Empty States */
+
 .no-groups {
     text-align: center;
     color: var(--letter-color-white);
@@ -308,7 +335,7 @@
     display: block;
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 1023px) {
     .group-list-container {
         padding: var(--gap-medium);
@@ -328,7 +355,7 @@
     }
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
     .group-list-container {
         padding: var(--gap-medium) var(--gap-small);

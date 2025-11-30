@@ -91,7 +91,7 @@
     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Nuevos estilos para el perfil de usuario */
+
 .userProfileSection {
     margin-bottom: var(--gap-large);
     width: 100%;
@@ -149,7 +149,7 @@
     font-size: var(--font-size-small);
 }
 
-/* Tablet adjustments */
+
 @media (max-width: 1023px) {
     .divContainerDetails {
         max-width: 90%;
@@ -206,7 +206,7 @@
     }
 }
 
-/* Mobile adjustments */
+
 @media (max-width: 767px) {
     .divContainerDetails {
         padding: var(--gap-medium);

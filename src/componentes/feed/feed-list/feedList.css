@@ -13,7 +13,7 @@
 }
 .divContainerListCitas {
     display: flex;
-    margin-top: calc(var(--header-height) + 70px);
+    margin-top: calc(var(--header-height) + 20px);
     margin-bottom: 90px;
     flex-direction: column-reverse;
     align-items: center;
@@ -29,9 +29,9 @@
 
 .quoteCardContainer {
     width: 90%;
-    max-width: 600px;
-    margin: 18px auto;
+    max-width: 700px;
     background-color: #2c344a;
+    color: var(--letter-color-white);
     border: 2px solid #eff6e0;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.18);
@@ -39,11 +39,23 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    align-items: stretch;
-    color: var(--letter-color-white);
 }
 
-/* Responsive adjustments */
+.userDivQuote {
+    width: 90%;
+    max-width: 700px;
+    background-color: #050a16;
+    color: var(--letter-color-white);
+    border: 2px solid #eff6e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
 @media (max-width: 767px) {
     .divContainerListCitas {
         margin-top: calc(var(--header-height) + 40px);
